@@ -1,0 +1,87 @@
+	<div id="header">
+		<div class="header-top">
+			<div class="container">
+				<div class="pull-left auto-width-left">
+					<ul class="top-menu menu-beta l-inline">
+						<li><a href=""><i class="fa fa-home"></i> 144 Xuân Thủy, Cầu Giấy, Hà Nội</a></li>
+						<li><a href=""><i class="fa fa-phone"></i> 0121 585 9237</a></li>
+					</ul>
+				</div>
+				<div class="pull-right auto-width-right">
+					<div class="dropdown">
+  					<button class="dropbtn"><img src="assets/dest/css/avatar.jpg" width="35px"><span>{{Auth::user()->hoten}}</span></button>
+					  <div class="dropdown-content">
+					    <a href="{{route('thongtintaikhoan')}}"><i class="fa fa-question-circle-o" style="color: #666666"></i>Thông tin tài khoản</a>
+					    <a href="{{route('doimatkhau')}}"><i class="fa fa-gear" style="color: #666666"></i>Đổi mật khẩu</a>
+					    <a href="{{route('dangxuat')}}"><i class="fa fa-sign-out" style="color: #666666"></i>Đăng xuất</a>
+					  </div>
+				</div>
+				</div>
+				<div class="clearfix"></div>
+			</div> <!-- .container -->
+		</div> <!-- .header-top -->
+		<div class="header-body">
+			<div class="container beta-relative">
+				<div class="pull-left">
+					<a href="index.html" id="logo"><img src="assets/dest/images/logo.png" width="70px" alt=""></a>
+				</div>
+				<div class="pull-right beta-components space-left ov">
+					<div class="space10">&nbsp;</div>
+					<div class="beta-comp">
+						<form role="search" method="get" id="searchform" action="/">
+					        <input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..." />
+					        <button class="fa fa-search" type="submit" id="searchsubmit" style="color: #4c4c4c;"></button>
+						</form>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div> <!-- .container -->
+		</div> <!-- .header-body -->
+		<div class="header-bottom" style="background-color: #0277b8;">
+			<div class="container">
+				<a class="visible-xs beta-menu-toggle pull-right" href="#"><span class='beta-menu-toggle-text'>Menu</span> <i class="fa fa-bars"></i></a>
+				<div class="visible-xs clearfix"></div>
+				<nav class="main-menu">
+					<ul class="l-inline ov">
+						<li>
+							<a href="{{route('trangchu')}}">
+								<i class="fa fa-home"></i>
+								<span>Trang chủ</span>
+							</a>
+						</li>
+						<li>
+							<a href="{{route('tintuc')}}">
+								<i class="fa fa-book"></i>
+								<span>Tin tức</span>
+							</a>
+						</li>
+						<li>
+							<a href="{{route('hoibacsi')}}">
+								<i class="fa fa-question-circle"></i>
+								<span>Hỏi bác sĩ</span>
+							</a>
+						</li>
+						<li>
+							<a href="index.html">
+								<i class="fa fa-search"></i>
+								<span>Tra cứu</span>
+							</a>
+						</li>
+						<li>
+							<a href="index.html">
+								<i class="fa fa-envelope-o"></i>
+								<span>Tin nhắn</span>
+								<span class="span-mail">10</span>
+							</a>
+						</li>
+						<li>
+							<a href="index.html">
+								<i class="fa fa-tint"></i>
+								<span>Xét nghiệm</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div> <!-- .container -->
+		</div> <!-- .header-bottom -->
+	</div> <!-- #header -->

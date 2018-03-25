@@ -1,0 +1,110 @@
+body{
+	margin: 0;
+	padding: 0;
+	background: url(bg.jpg);
+	background-size: cover;
+	font-family: sans-serif;
+}
+
+.back-ground{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.8);
+	color: #fff;
+	position: absolute;
+}
+
+.form-area{
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 700px;
+	height: 700px;
+	box-sizing: border-box;
+	background: rgba(0,0,0,0.8);
+	padding: 40px;
+}
+
+.form-title{
+	margin: 0;
+	padding: 0 0 50px;
+	font-weight: bold;
+	color: #1c8abd;
+	text-align: center;
+	font-size: 30px;
+}
+
+.form-area p{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.form-area input, select{
+	margin-bottom: 30px;
+	width: 100%;
+}
+
+.form-area option{
+	font-size: 20px;
+}
+
+.form-area input[type="text"], input[type="password"]{
+	border: none;
+	border-bottom: 1px solid #ffffff;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #1c8abd;
+	font-size: 20px;
+}
+
+.form-area select{
+	border: none;
+	border-bottom: 1px solid #ffffff;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #1c8abd;
+	font-size: 20px;
+}
+
+.form-area input[type="submit"]{
+	border: none;
+	height: 40px;
+	outline: none;
+	color: #ffffff;
+	font-size: 20px;
+	background-color: #1c8abd;
+	cursor: pointer;
+	border-radius: 20px;
+}
+
+.form-area input[type="submit"]:hover{
+	background-color: #00babe;
+	color: #ffffff;
+}
+
+.form-area a{
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.form-area a:hover{
+	color: #1c8abd;
+}
+
+.r1{
+	margin: 0px;
+	background: url(bg.jpg);
+	background-repeat: no-repeat;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px black inset;
+    -webkit-text-fill-color: #1c8abd
+}

@@ -1,0 +1,372 @@
+.contain{
+	margin-top: 20px;
+}
+
+.panel-heading button{
+	float: right;
+	margin-top: -10px;
+}
+
+.panel-heading b{
+	font-size: 24px;
+	margin-left: 20px
+}
+
+.panel-body{
+	font-size: 16px;
+	width: 90vh;
+	height: 68vh;
+}
+
+.panel-body input{
+	width: 500px;
+}
+
+.edit{
+	display: none;
+}
+
+.panel-heading{
+	margin-top: 20px;
+}
+
+.modal{
+	font-size: 16px;
+}
+
+input[type="text"], select, input[type="date"]{
+	font-size: 16px;
+	border-radius: none;
+}
+
+.back-ground-color{
+	background-color: #e1e3e6;
+}
+
+.fixnav {
+	position: fixed;
+	height: 100%;
+}
+
+.content1{
+	position: relative;
+}
+
+.aside-menu {
+	list-style:none;
+	background:#f8f8f8;
+}
+
+.aside-menu li {
+	border:2px solid #e1e3e6
+}
+
+.aside-group-1 a{
+	padding: 0px;
+	font-size: 15px;
+	color: #0277b8;
+}
+
+.aside-group-1 span{
+	margin-left: 15px;
+	font-size: 15px;
+}
+
+.aside-menu b{
+	padding: 5px;
+	font-size: 15px;
+}
+
+.aside-menu i{
+	padding: 0px;
+	font-size: 17px;
+}
+
+.aside-menu span{
+	padding: 5px;
+}
+
+
+.aside-group-2 li a i{
+	color:#8e8e8e
+}
+
+.aside-group-1 li:hover{
+	background-color: #f1f1f1;
+}
+
+.aside-group-2 li:hover{
+	background-color: #f1f1f1;
+}
+
+.aside-group-3 li:hover{
+	background-color: #f1f1f1;
+}
+
+.aside-menu a:hover{
+	color: #00a2a2;
+}
+
+.aside-group-2 i:hover{
+	color: #00a2a2;
+}
+
+.aside-menu li.is-active a {
+	color: #00a2a2;
+}
+
+.aside-group-1 li{
+	border: none;
+	margin-top: 15px;
+}
+
+.aside-group-1{
+	border:1px solid #e1e3e6;
+	margin-top: 20px;
+}
+
+.aside-group-2{
+	border:1px solid #e1e3e6;
+	border-top: none;
+}
+
+.aside-group-2 li{
+	border: none;
+	margin-bottom: 15px;
+}
+
+.aside-group-2 a{
+	padding: 18px;
+	font-size: 15px;
+}
+
+.aside-group-3{
+	border:1px solid #e1e3e6;
+	border-top: none;
+}
+
+.aside-group-3 li{
+	border: none;
+	margin-bottom: 15px;
+}
+
+.aside-group-3 a{
+	padding: 28px;
+	font-size: 15px;
+}
+
+.aside-group-3 li{
+	border: none;
+	margin-top: 15px;
+}
+
+.aside-group-3 i{
+	color: #bbb;
+	float: right;
+	margin-right:20px;
+}
+
+.row img{
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.row2 li{
+	margin-left: 30px;
+}
+
+.aside-group-4{
+	border:1px solid #e1e3e6;
+	margin-top: 20px;
+	background-color: white;
+}
+
+.aside-group-4 i{
+	color: #00a2a2;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+.aside-group-4 li{
+	border: none;
+	border-bottom: 1px solid #e1e3e6;
+}
+
+.aside-group-4 textarea{
+	border: none;
+	overflow: hidden;
+	resize: none;
+	font-size: 16px;
+}
+
+.aside-group-5 li{
+	border-top: none;
+	border-bottom: none;
+}
+
+.aside-group-5 button{
+	float: right;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 20px;
+}
+
+button{
+	background-color: #00a2a2;
+}
+
+.aside-group-5 button:hover{
+	background: #56aaff;
+	border: 1px solid #e1e3e6;
+}
+
+
+.aside-group-6{
+	border:1px solid #e1e3e6;
+}
+
+.aside-group-6 li{
+	border: none;
+	margin-bottom: 15px;
+	font-size: 15px;
+}
+
+.aside-group-6 a{
+	font-size: 15px;
+}
+
+.aside-group-6 i:hover{
+	color: #00a2a2;
+}
+
+.aside-group-6 li{
+	border: none;
+	margin-top: 15px;
+}
+
+.aside-group-6 li a i{
+	color: #365899;
+}
+
+.ex-infor a{
+	font-size: 12px;
+}
+
+.ex-infor i{
+	font-size: 5px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.ex-infor a:hover{
+	color: #00a2a2;
+}
+
+.theme a{
+	background: #aad4ff;
+	padding: 5px 10px 4px;
+	color: black;
+	border-radius: 20px;
+	margin-left: 5px;
+}
+
+.theme a:hover{
+	background: #00a2a2;
+	color: white;
+}
+
+.row3 li{
+	margin-left: 15px;
+}
+
+.row4 i{
+	color: black;
+	margin-left: 30px;
+	float: top;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.row4{
+	border-top: 1px solid #e1e3e6;
+}
+
+.row5{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+.aside-group-7{
+	background-color: #f1f1f1;
+}
+
+.aside-group-7 li{
+	border-left: none;
+	border-right: none;
+}
+
+.aside-group-7 i{
+	color: black;
+}
+
+.name a{
+	font-size: 16px;
+	color: #365899;
+}
+
+.name{
+	margin-top: 10px;
+}
+
+.commenting{
+	margin-top: -15px;
+	margin-left: 70px;
+	float: left;
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+
+.emotion i{
+	margin-left: 70px;
+	font-size: 15px;
+}
+
+.ex-infor2 a{
+	font-size: 13px;
+}
+
+.ex-infor2 i{
+	font-size: 13px;
+	margin-left: 15px;
+}
+
+.ex-infor2 a:hover{
+	color: #00a2a2;
+}
+
+.reply img{
+	margin-left: -5px;
+}
+
+.aside-group-3 {
+	bottom: 200px;
+}
+
+.row2 img {
+	width: 200px;
+	margin-left: 30px
+}
+
+.doimatkhau b{
+	font-size: 18px;
+	margin-left: 30px
+}
+
+.doimatkhau input{
+	margin-bottom: 20px;
+	margin-left: 30px;
+	height: 40px;
+}
+
