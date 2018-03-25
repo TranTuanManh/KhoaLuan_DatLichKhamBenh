@@ -1,0 +1,65 @@
+.fixNav{
+  width: 100%;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  z-index: 100000000;
+}
+
+#footer{
+	position: fixed;
+}
+
+.cart-body{
+	z-index:999;
+}
+.inner-header{
+	background-color: #ffffff
+}
+.inner-title,.beta-breadcrumb, .beta-breadcrumb a{
+	color: black
+}
+.main-menu>ul.l-inline> li> a{
+	color: #fff;
+	padding: 10px 35px
+}
+
+.fa{
+	font-size: 18px;
+	color: #fff;
+}
+
+.span-mail{
+	transform: translate(-100%,-100%);
+	left: 85%;
+	width: 30px;
+	height: 20px;
+	box-sizing: border-box;
+	background: red;
+	text-align: center;
+}
+
+.button-login{
+	top: 15%;
+	left: 8%;	
+	position: absolute;
+	height: 60px;
+	font-size: 50px;
+	text-align: center;
+}
+
+.button-login a{
+	border-radius: 40px;
+	font-size: 25px;
+	width: 500px;
+	margin-top: 30px;
+}
+
+.button-login b{
+	line-height: 60px;
+	white-space: pre-line;
+}
+
+.r1{
+	margin: 0px;
+}

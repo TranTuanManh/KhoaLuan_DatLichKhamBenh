@@ -11,6 +11,45 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('trang-chu',[
+	'as' => 'trangchu',
+	'uses' => 'PageController@getTrangChu'
+]);
+
+Route::get('dang-nhap',[
+	'as' => 'dangnhap',
+	'uses' => 'PageController@getDangNhap'
+]);
+
+Route::post('dang-nhap',[
+	'as' => 'dangnhap',
+	'uses' => 'PageController@postDangNhap'
+]);
+
+Route::get('dang-ki',[
+	'as' => 'dangki',
+	'uses' => 'PageController@getDangKi'
+]);
+
+Route::post('dang-ki',[
+	'as' => 'dangki',
+	'uses' => 'PageController@postDangKi'
+]);
+
+Route::get('dang-xuat',[
+	'as' => 'dangxuat',
+	'uses' => 'PageController@getDangXuat'
+]);
+
+Route::get('hoi-bac-si',[
+	'as' => 'hoibacsi',
+	'uses' => 'PageController@getHoiBacSi'
+]);
+
+Route::get('gioi-thieu',[
+	'as' => 'gioithieu',
+	'uses' => 'PageController@getGioiThieu'
+]);
+
+
+
