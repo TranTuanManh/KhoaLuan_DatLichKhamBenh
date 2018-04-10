@@ -48,63 +48,65 @@
 				<ul class="aside-menu aside-group-4">
 					<div class="row">
 						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="50px">
+							<img src="{{Auth::user()->avatar}}" width="50px">
 						</div>
 						<div class="col-md-11">
 							<li><i class="fa fa-question-circle"><span>Đặt câu hỏi</span></i>
 							</li>
-						<form id="submit_form" method="post"> 
-							<textarea style="height: 100px" placeholder="Bạn muốn hỏi bác sĩ điều gì?"></textarea>
-							<select style="width: 20%; height: 30px; font-size: 15px">
+					<form action="{{route('hoibacsi')}}" id="submit_form" method="post" enctype="multipart/form-data"> 
+						<input type="hidden" name="_token" value="{{csrf_token()}}"> 
+							<textarea style="height: 100px" placeholder="Bạn muốn hỏi bác sĩ điều gì?" name="noidung" wrap="physical"></textarea>
+							<select style="width: 20%; height: 30px; font-size: 15px" name="id_chude">
 								<option>Chọn chủ đề</option>
 								@foreach($chude as $cd)
 									<option value="{{$cd->id}}" style="color: #4267b2">{{$cd->tenchude}}</option>
 								@endforeach
 							</select>
 
-							<select style="width: 20%; height: 30px; font-size: 15px">
-								<option>Chọn đối tượng hỏi</option>
+							<select style="width: 20%; height: 30px; font-size: 15px" name="id_nguoiduochoi">
+								<option>Chọn bác sĩ để hỏi</option>
+								@foreach($bacsi as $bs)
+									<option value="{{$bs->id}}" style="color: #4267b2">{{$bs->hoten}}</option>
+								@endforeach
 							</select>
 							<div id="image_preview">
-								<img src="" width="200px" id="image" style="margin-left: 0px; border: 1px solid #e1e3e6">
+								<img src="" width="200px" id="image" name="image" style="margin-left: 0px; border: 1px solid #e1e3e6">
 							</div>
 							<div class="form-group">
-								<input type="file"  onchange="showImage.call(this)" id="file-upload" style="visibility: hidden;" />
-								<input type="button" class="btn btn-primary" value="Ảnh đính kèm" onclick="document.getElementById('file-upload').click()" 
-									style="border-radius: 10px; position: absolute; margin-top: -20px; margin-left: 0px" 
-								></button>
+								<input type="file"  onchange="showImage.call(this)" id="file-upload" name="file" style="visibility: hidden;" />
+								<input type="button" class="btn btn-primary" id="button-upload" value="Ảnh đính kèm" name="file_upload" onclick="document.getElementById('file-upload').click()" 
+									style="border-radius: 10px; position: absolute; margin-top: -20px; margin-left: 0px" />
 							</div>
-						</form>
 						</div>					
 					</div>
 					<br>
-
 				</ul>
-				<ul class="aside-menu aside-group-5">
-						<button type="submit" class="btn btn-md pull-right btnn" style="width: 90px">
-							Gửi <!---->  <i aria-hidden="true" class="fa fa-send-o"></i></button>
-					<li style="width: 100px"></li>
-				</ul><br><br><br>
-				<ul class="aside-menu aside-group-6">
+						<ul class="aside-menu aside-group-5">
+							<button type="submit" class="btn btn-md pull-right btnn" style="width: 90px">
+								Gửi <!---->  <i aria-hidden="true" class="fa fa-send-o"></i></button>
+							<li style="width: 100px"></li>
+						</ul><br><br><br>
+					</form>
+			@foreach($baiviet as $bv)
+				<ul class="aside-menu aside-group-6" onload="">
 					<div class="row">
 						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="50px">
+							<img src="{{$bv->nguoihoi->avatar}}" width="50px">
 						</div>
 						<div class="col-md-11">
-							<li><a href="#"><i class="fa fa-user"><span>Mạnh Mạnhh Sama</span></i></a> đã hỏi <a href="#"><b>Phòng khám đa khoa - ABC</b></a>
+							<li><a href="#"><i class="fa fa-user"><span>{{$bv->nguoihoi->hoten}}</span></i></a> đã hỏi<a href="#"><b>Bác sĩ {{$bv->nguoiduochoi->hoten}}</b></a>
 								<br>
-								<div class="ex-infor"><a href="#">15 phút trước<i class="fa fa-circle"></i> Nam <i class="fa fa-circle"></i> 22 tuổi <i class="fa fa-circle"></i> Hải Phòng</a></div>
+								<div class="ex-infor"><a href="#">{{ $bv->created_at->diffForHumans() }}</a></div>
 							</li>
 						</div>
 					</div>
 					<div class="row row2">
-						<li> Hoa thân mến,<br><br>
-							Tôi là Đô-rê-mon, robot tư vấn sức khỏe. Trong lúc chờ đợi Phòng khám Sản phụ khoa - Bác sĩ Đỗ Thị Ngọc Lan trả lời câu hỏi của bạn, tôi vừa tìm thấy những nội dung sau đây từ kho tàng các câu hỏi đáp và bài viết của ViCare. Bạn đọc thử xem nhé:</li>
-						<img src="">
+						<li>{!! nl2br($bv->noidung) !!}<li>
+						<img src="{{$bv->url_anh}}">
 					</div>
 					<div class="row row3">
 						<div class="col-md-12">
-						<li class="theme">Chủ đề: <a href="#">Đa khoa</a><a href="#">Trẻ em</a><a href="#">Thần kinh</a></li>
+						<li class="theme">Chủ đề: <a href="#">{{$bv->chude->tenchude}}</a></li>
 						</div>	
 					</div>	
 					<div class="row row4">
@@ -122,238 +124,54 @@
 						</div>
 						</div>	
 					</div>	
-				</ul>
-				<ul class="aside-menu aside-group-7">
+				</ul>	
+								<ul class="aside-menu aside-group-7">
 					<li><div class="row row5">
 						<div class="col-md-1"></div>
 						<div class="col-md-3" style="font-size: 14px"><i class="fa fa-share"><span>Đã có 0 lượt chia sẻ.</span></i></div>
 					</div></li>
-					<div class="row">
-						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="40px">
-						</div>				
-						<div class="row name">
-							<a href="#" style="margin-left: -10px"><b>Đô-rê-mon - robot tư vấn sức khỏe</b></a><br><br>
-							<div class="col-md-11 commenting">
-								Thu thân mến,
-								Tôi là Đô-rê-mon, robot tư vấn sức khỏe. Trong khi đợi các bác sĩ, chuyên gia và thành viên Cộng đồng ViCare trả lời câu hỏi của bạn, tôi vừa tìm thấy những nội dung sau đây từ kho tàng các câu hỏi đáp và bài viết của ViCare. Bạn đọc thử xem nhé:
-								<div class="ex-infor2"><a href="#">15 phút trước</a><a href="#"><i class="fa fa-heart-o"></i> Yêu thích</a></div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="40px">
-						</div>				
-						<div class="row name">
-							<a href="#" style="margin-left: -10px"><b>Đô-rê-mon - robot tư vấn sức khỏe</b></a><br><br>
-							<div class="col-md-11 commenting">
-								Thu thân mến,
-								Tôi là Đô-rê-mon, robot tư vấn sức khỏe. Trong khi đợi các bác sĩ, chuyên gia và thành viên Cộng đồng ViCare trả lời câu hỏi của bạn, tôi vừa tìm thấy những nội dung sau đây từ kho tàng các câu hỏi đáp và bài viết của ViCare. Bạn đọc thử xem nhé:
-								<div class="ex-infor2"><a href="#">15 phút trước</a><a href="#"><i class="fa fa-heart-o"></i> Yêu thích</a></div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="40px">
-						</div>				
-						<div class="col-md-11">
-							<input type="text" name="comment" placeholder="Viết bình luận của bạn...">
-							<button type="submit" id="searchsubmit" onclick="HandleBrowseClick();" style="margin-right: 40px; margin-top: 10px; color: #4c4c4c"></button>
-							<input type="file" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"/>
-							<input type="hidden" id="filename" readonly="true"/>
-						</div>
-					</div>
-					<br>
-				</ul>
-				<ul class="aside-menu aside-group-5">
-					<li style="width: 100px"></li>
-				</ul><br><br>
-				<ul class="aside-menu aside-group-6">
-					<div class="row">
-						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="50px">
-						</div>
-						<div class="col-md-11">
-							<li><a href="#"><i class="fa fa-user"><span>Mạnh Mạnhh Sama</span></i></a> đã hỏi <a href="#"><b>Phòng khám đa khoa - ABC</b></a>
-								<br>
-								<div class="ex-infor"><a href="#">15 phút trước<i class="fa fa-circle"></i> Nam <i class="fa fa-circle"></i> 22 tuổi <i class="fa fa-circle"></i> Hải Phòng</a></div>
-							</li>
-						</div>
-					</div>
-					<div class="row row2">
-						<li> Hoa thân mến,<br><br>
-							Tôi là Đô-rê-mon, robot tư vấn sức khỏe. Trong lúc chờ đợi Phòng khám Sản phụ khoa - Bác sĩ Đỗ Thị Ngọc Lan trả lời câu hỏi của bạn, tôi vừa tìm thấy những nội dung sau đây từ kho tàng các câu hỏi đáp và bài viết của ViCare. Bạn đọc thử xem nhé:</li>
-					</div>
-					<div class="row row3">
-						<div class="col-md-12">
-						<li class="theme">Chủ đề: <a href="#">Đa khoa</a><a href="#">Trẻ em</a><a href="#">Thần kinh</a></li>
-						</div>	
-					</div>	
-					<div class="row row4">
-						<div class="col-md-12">
+				@foreach($binhluan as $bl)
+					@if($bl->id_baiviet == $bv->id)
 						<div class="row">
-							<div class="col-md-2">
-								<li><a href=""><i class="fa fa-heart-o"><span>Yêu thích</span></i></a></li>
-							</div>	
-							<div class="col-md-2">
-								<li><a href=""><i class="fa fa-comment-o"><span>Trả lời</span></i></a></li>
-							</div>	
-							<div class="col-md-2">
-								<li><a href=""><i class="fa fa-share"><span>Chia sẻ</span></i></a></li>
-							</div>
-						</div>
-						</div>	
-					</div>	
-				</ul>
-				<ul class="aside-menu aside-group-7">
-					<li><div class="row row5">
-						<div class="col-md-1"></div>
-						<div class="col-md-3" style="font-size: 14px"><i class="fa fa-share"><span>Đã có 0 lượt chia sẻ.</span></i></div>
-					</div></li>
+	                        <div class="col-md-1">
+	                            <img src="{{ $bl->nguoibinhluan->avatar }}" width="40px">
+	                        </div>              
+	                        <div class="row name">
+	                            <a href="#" style="margin-left: -10px"><b>{{$bl->nguoibinhluan->hoten }}</b></a><br><br>
+	                            <div class="col-md-11 commenting">
+	                                {{$bl->noidung}}
+	                                <div class="ex-infor2"><a href="#">{{ $bl->created_at->diffForHumans()}} </a><a href="#"><i class="fa fa-heart-o"></i> Yêu thích</a></div>
+	                            </div>
+
+	                        </div>
+	                    </div>
+					@endif
+				@endforeach
+				<span class="display_comment{{$bv->id}}"></span>
 					<div class="row">
 						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="40px">
-						</div>				
-						<div class="row name">
-							<a href="#" style="margin-left: -10px"><b>Đô-rê-mon - robot tư vấn sức khỏe</b></a><br><br>
-							<div class="col-md-11 commenting">
-								Thu thân mến,
-								Tôi là Đô-rê-mon, robot tư vấn sức khỏe. Trong khi đợi các bác sĩ, chuyên gia và thành viên Cộng đồng ViCare trả lời câu hỏi của bạn, tôi vừa tìm thấy những nội dung sau đây từ kho tàng các câu hỏi đáp và bài viết của ViCare. Bạn đọc thử xem nhé:
-								<div class="ex-infor2"><a href="#">21 phút trước</a><a href="#"><i class="fa fa-heart-o"></i> Yêu thích</a></div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="40px">
-						</div>				
-						<div class="row name">
-							<a href="#" style="margin-left: -10px"><b>Đô-rê-mon - robot tư vấn sức khỏe</b></a><br><br>
-							<div class="col-md-11 commenting">
-								Thu thân mến,
-								Tôi là Đô-rê-mon, robot tư vấn sức khỏe. Trong khi đợi các bác sĩ, chuyên gia và thành viên Cộng đồng ViCare trả lời câu hỏi của bạn, tôi vừa tìm thấy những nội dung sau đây từ kho tàng các câu hỏi đáp và bài viết của ViCare. Bạn đọc thử xem nhé:
-								<div class="ex-infor2"><a href="#">21 phút trước</a><a href="#"><i class="fa fa-heart-o"></i> Yêu thích</a></div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="40px">
+							<img src="{{Auth::user()->avatar}}" width="40px">
 						</div>				
 						<div class="col-md-11">
-							<input type="text" name="comment" placeholder="Viết bình luận của bạn...">
-							<button type="submit" id="searchsubmit" onclick="HandleBrowseClick();" style="margin-right: 40px; margin-top: 10px; color: #4c4c4c"></button>
-							<input type="file" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"/>
-							<input type="hidden" id="filename" readonly="true"/>
+							<form action="{{route('comment')}}" class="submitform{{$bv->id}}" method="post"> 
+								<input type="hidden" name="_token" value="{{csrf_token()}}"> 
+								<input type="hidden" name="id_baiviet" value="{{$bv->id}}">
+								<input type="text" id="commentid" onclick="myfunction({{$bv->id}});" name="comment_content" placeholder="Viết bình luận của bạn..." autocomplete="off">
+								<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" id="submit" />
+							</form>
 						</div>
 					</div>
 					<br>
 				</ul>
-
 				<ul class="aside-menu aside-group-5">
 					<li style="width: 100px"></li>
 				</ul><br><br>
-				
-				<ul class="aside-menu aside-group-6">
-					<div class="row">
-						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="50px">
-						</div>
-						<div class="col-md-11">
-							<li><a href="#"><i class="fa fa-user"><span>Mạnh Mạnhh Sama</span></i></a> đã hỏi <a href="#"><b>Phòng khám đa khoa - ABC</b></a>
-								<br>
-								<div class="ex-infor"><a href="#">15 phút trước<i class="fa fa-circle"></i> Nam <i class="fa fa-circle"></i> 22 tuổi <i class="fa fa-circle"></i> Hải Phòng</a></div>
-							</li>
-						</div>
-					</div>
-					<div class="row row2">
-						<li> Hoa thân mến,<br><br>
-							Tôi là Đô-rê-mon, robot tư vấn sức khỏe. Trong lúc chờ đợi Phòng khám Sản phụ khoa - Bác sĩ Đỗ Thị Ngọc Lan trả lời câu hỏi của bạn, tôi vừa tìm thấy những nội dung sau đây từ kho tàng các câu hỏi đáp và bài viết của ViCare. Bạn đọc thử xem nhé:</li>
-					</div>
-					<div class="row row3">
-						<div class="col-md-12">
-						<li class="theme">Chủ đề: <a href="#">Đa khoa</a><a href="#">Trẻ em</a><a href="#">Thần kinh</a></li>
-						</div>	
-					</div>	
-					<div class="row row4">
-						<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-2">
-								<li><a href=""><i class="fa fa-heart-o"><span>Yêu thích</span></i></a></li>
-							</div>	
-							<div class="col-md-2">
-								<li><a href=""><i class="fa fa-comment-o"><span>Trả lời</span></i></a></li>
-							</div>	
-							<div class="col-md-2">
-								<li><a href=""><i class="fa fa-share"><span>Chia sẻ</span></i></a></li>
-							</div>
-						</div>
-						</div>	
-					</div>	
-				</ul>
-				<ul class="aside-menu aside-group-7">
-					<li><div class="row row5">
-						<div class="col-md-1"></div>
-						<div class="col-md-3" style="font-size: 14px"><i class="fa fa-share"><span>Đã có 0 lượt chia sẻ.</span></i></div>
-					</div></li>
-					<div class="row">
-						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="40px">
-						</div>				
-						<div class="row name">
-							<a href="#" style="margin-left: -10px"><b>Đô-rê-mon - robot tư vấn sức khỏe</b></a><br><br>
-							<div class="col-md-11 commenting">
-								Thu thân mến,
-								Tôi là Đô-rê-mon, robot tư vấn sức khỏe. Trong khi đợi các bác sĩ, chuyên gia và thành viên Cộng đồng ViCare trả lời câu hỏi của bạn, tôi vừa tìm thấy những nội dung sau đây từ kho tàng các câu hỏi đáp và bài viết của ViCare. Bạn đọc thử xem nhé:
-								<div class="ex-infor2"><a href="#">21 phút trước</a><a href="#"><i class="fa fa-heart-o"></i> Yêu thích</a></div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="40px">
-						</div>				
-						<div class="row name">
-							<a href="#" style="margin-left: -10px"><b>Đô-rê-mon - robot tư vấn sức khỏe</b></a><br><br>
-							<div class="col-md-11 commenting">
-								Thu thân mến,
-								Tôi là Đô-rê-mon, robot tư vấn sức khỏe. Trong khi đợi các bác sĩ, chuyên gia và thành viên Cộng đồng ViCare trả lời câu hỏi của bạn, tôi vừa tìm thấy những nội dung sau đây từ kho tàng các câu hỏi đáp và bài viết của ViCare. Bạn đọc thử xem nhé:
-								<div class="ex-infor2"><a href="#">21 phút trước</a><a href="#"><i class="fa fa-heart-o"></i> Yêu thích</a></div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-1">
-							<img src="assets/dest/css/avatar.jpg" width="40px">
-						</div>				
-						<div class="col-md-11">
-							<input type="text" name="comment" placeholder="Viết bình luận của bạn...">
-							<button type="submit" id="searchsubmit" onclick="HandleBrowseClick();" style="margin-right: 40px; margin-top: 10px; color: #4c4c4c"></button>
-							<input type="file" id="browse" name="fileupload" style="display: none" onChange="Handlechange();"/>
-							<input type="hidden" id="filename" readonly="true"/>
-						</div>
-					</div>
-					<br>
-				</ul>
-
-				<ul class="aside-menu aside-group-5">
-					<li style="width: 100px"></li>
-				</ul><br><br>
+			@endforeach
+			<div class="row">{{$baiviet->links()}}</div>
 			</div>
 		</div>
 	</div>
-
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 		var textarea = document.querySelector('textarea');
 		textarea.addEventListener('keydown', autosize);
@@ -377,10 +195,38 @@
 				obj.readAsDataURL(this.files[0]);
 			}
 		}
+		
+			function myfunction(id){
+				$('.submitform' + id).on('submit', function (event) {
+	            event.preventDefault();
+	            var form_data = $(this).serialize();
+	            $.ajax({
+	                url: 'comment',
+	                method: "POST",
+	                datatype: 'json',
+	                data: form_data,
+	                //id: $("input[name='id_baiviet']").val(),
+	                success:function(data){
+	                	if(data.error != ''){
+	                		$('.submitform' + id)[0].reset();      		
+	                		}
+	                	}
+	                	
+	            	});
+	            load_comment(id);return;
+	        	}); 
+			}
 
-		$('#button-upload').click(function(){
-   			 $('#file-upload').click();
-		});
-	</script>
+			function load_comment(id){
+				$.ajax({
+					url: 'loadcomment',
+					method: 'GET',
+					success:function(data){
+						$('.display_comment' + id).html(data);
+					}
+				});
+			}
+
+</script>
 @endsection
 

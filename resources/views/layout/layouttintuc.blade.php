@@ -18,10 +18,9 @@
 						</ul>
 						<ul class="aside-menu aside-group-2">
 							<br>
-							<li><a href="#"><i class="fa"><span style="font-size: 20px">Thông tin tài khoản</span></i></a></li>
-							<li><a href="#"><i class="fa"><span  style="font-size: 20px">Đổi mật khẩu</span></i></a></li>
-							<li><a href="{{route('dangxuat')}}"><i class="fa fa-sign-out"><span style="font-size: 20px">Đăng xuất</span></i></a></li>
-
+							@foreach($chude as $cd)
+								<li><a href="#"><i class="fa"><span style="font-size: 20px">{{$cd->tenchude}}</span></i></a></li>
+							@endforeach
 						</ul>
 				</div>
 			</div>

@@ -18,23 +18,27 @@
 			<form action="{{route('dangki')}}" method="post">
 				<input type="hidden" name="_token" value="{{csrf_token()}}">
 				<p>Email</p>
-				<input type="text" name="email" placeholder="Nhập email của bạn">
+				<input type="text" name="email" placeholder="Nhập email của bạn" required>
 				<p>Họ và tên</p>
-				<input type="text" name="hoten" placeholder="Nhập tên của bạn">
+				<input type="text" name="hoten" placeholder="Nhập tên của bạn" required>
 				<div>
 					<p>Loại tài khoản</p>
 						<select class="" id="select" name="role">
-							<option value="">
-								Chọn loại tài khoản
-							</option>
 							<option value="1">Người dùng</option>
 							<option value="2">Bác sĩ</option>
 						</select>
 				</div><br>
+				<div>
+					<p>Giới tính</p>
+						<select class="" id="select" name="gioitinh">
+							<option value="Nam">Nam</option>
+							<option value="Nữ">Nữ</option>
+						</select>
+				</div><br>
 				<p>Mật khẩu</p>
-				<input type="password" name="password" placeholder="Nhập mật khẩu của bạn">
+				<input type="password" name="password" placeholder="Nhập mật khẩu của bạn" required>
 				<p>Nhập lại mật khẩu</p>
-				<input type="password" name="password" placeholder="Nhập lại mật khẩu">
+				<input type="password" name="password" placeholder="Nhập lại mật khẩu" required>
 				<input type="submit" name="submit" value="Đăng kí">
 				<a href="{{route('dangnhap')}}">Đã có tài khoản? Đăng nhập ngay</a>
 			</form>

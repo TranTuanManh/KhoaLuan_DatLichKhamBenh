@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', function(){
+	return redirect('gioi-thieu');
+});
+
 Route::get('trang-chu',[
 	'as' => 'trangchu',
 	'uses' => 'PageController@getTrangChu'
@@ -43,6 +47,11 @@ Route::get('hoi-bac-si',[
 	'uses' => 'PageController@getHoiBacSi'
 ]);
 
+Route::post('hoi-bac-si',[
+	'as' => 'hoibacsi',
+	'uses' => 'PageController@postHoiBacSi'
+]);
+
 Route::get('gioi-thieu',[
 	'as' => 'gioithieu',
 	'uses' => 'PageController@getGioiThieu'
@@ -71,4 +80,64 @@ Route::post('doi-mat-khau',[
 Route::get('tin-tuc',[
 	'as' => 'tintuc',
 	'uses' => 'PageController@getTinTuc'
+]);
+
+Route::get('tra-cuu',[
+	'as' => 'tracuu',
+	'uses' => 'PageController@getTraCuu'
+]);
+
+Route::get('dat-lich-kham',[
+	'as' => 'datlichkham',
+	'uses' => 'PageController@getDatLichKham'
+]);
+
+Route::get('dat-lich-kham-ngay/{id}',[
+	'as' => 'datlich',
+	'uses' => 'PageController@getDatLich'
+]);
+
+Route::post('dat-lich-kham-ngay',[
+	'as' => 'postdatlich',
+	'uses' => 'PageController@postDatLichKham'
+]);
+
+Route::post('dat-lich-kham',[
+	'as' => 'datlichkham',
+	'uses' => 'PageController@postDatLichKham'
+]);
+
+Route::get('ajax-subinfor',[
+	'as' => 'ajax',
+	'uses' => 'PageController@getAjax'
+ ]);
+
+Route::post('comment',[
+	'as' => 'comment',
+	'uses' => 'PageController@storecomment'
+]);
+
+Route::get('loadcomment',[
+	'as' => 'loadcomment',
+	'uses' => 'PageController@loadcomment'
+]);
+
+Route::get('lichkhambenh',[
+	'as' => 'lichkhambenh',
+	'uses' => 'PageController@lichkhambenh'
+]);
+
+Route::get('pllichkhambenh/{id}',[
+	'as' => 'pllichkhambenh',
+	'uses' => 'PageController@pllichkhambenh'
+]);
+
+Route::get('chapnhan/{id}',[
+	'as' => 'chapnhan',
+	'uses' => 'PageController@chapnhan'
+]);
+
+Route::get('huy/{id}',[
+	'as' => 'huy',
+	'uses' => 'PageController@huy'
 ]);

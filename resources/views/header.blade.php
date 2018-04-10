@@ -8,14 +8,20 @@
 					</ul>
 				</div>
 				<div class="pull-right auto-width-right">
+					@if(Auth::check())
 					<div class="dropdown">
-  					<button class="dropbtn"><img src="assets/dest/css/avatar.jpg" width="35px"><span>{{Auth::user()->hoten}}</span></button>
-					  <div class="dropdown-content">
-					    <a href="{{route('thongtintaikhoan')}}"><i class="fa fa-question-circle-o" style="color: #666666"></i>Thông tin tài khoản</a>
-					    <a href="{{route('doimatkhau')}}"><i class="fa fa-gear" style="color: #666666"></i>Đổi mật khẩu</a>
-					    <a href="{{route('dangxuat')}}"><i class="fa fa-sign-out" style="color: #666666"></i>Đăng xuất</a>
+  						<button class="dropbtn"><img src="{{Auth::user()->avatar}}" width="35px"><span>{{Auth::user()->hoten}}</span></button>
+  						<div class="dropdown-content">
+					    	<a href="{{route('thongtintaikhoan')}}"><i class="fa fa-question-circle-o" style="color: #666666"></i>Thông tin tài khoản</a>
+					    	<a href="{{route('doimatkhau')}}"><i class="fa fa-gear" style="color: #666666"></i>Đổi mật khẩu</a>
+					    	<a href="{{route('dangxuat')}}"><i class="fa fa-sign-out" style="color: #666666"></i>Đăng xuất</a>
 					  </div>
-				</div>
+					</div>
+  					@else
+  						<ul class="top-menu menu-beta l-inline">
+							<li><a href="{{route('dangnhap')}}" class="btn" style="font-size: 16px; color: #4267b2"><i class="fa fa-sign-in" style="color: #4267b2"></i>Đăng nhập ngay</a></li>
+						</ul>
+  					@endif
 				</div>
 				<div class="clearfix"></div>
 			</div> <!-- .container -->
@@ -62,22 +68,22 @@
 							</a>
 						</li>
 						<li>
-							<a href="index.html">
+							<a href="{{route('tracuu')}}">
 								<i class="fa fa-search"></i>
 								<span>Tra cứu</span>
 							</a>
 						</li>
 						<li>
-							<a href="index.html">
+							<a href="{{route('lichkhambenh')}}">
 								<i class="fa fa-envelope-o"></i>
-								<span>Tin nhắn</span>
+								<span>Lịch khám bệnh</span>
 								<span class="span-mail">10</span>
 							</a>
 						</li>
 						<li>
-							<a href="index.html">
+							<a href="{{route('datlichkham')}}">
 								<i class="fa fa-tint"></i>
-								<span>Xét nghiệm</span>
+								<span>Đặt lịch khám</span>
 							</a>
 						</li>
 					</ul>
