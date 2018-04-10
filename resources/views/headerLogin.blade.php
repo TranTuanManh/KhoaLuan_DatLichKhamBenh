@@ -17,8 +17,8 @@
 							</a>
 						</li>
 						<li>
-							<a href="index.html">
-								<i class="fa fa-search"></i>
+							<a href="{{route('tintuc')}}">
+								<i class="fa fa-book"></i>
 								<span>Tin tức</span>
 							</a>
 						</li>

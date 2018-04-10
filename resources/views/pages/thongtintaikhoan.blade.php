@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading" id="content-header"><b>Thông tin tài khoản</b><button class="btn btn-link" id="btn-edit" style="color: blue; font-size: 18px; margin-right: 20px;"><u>Edit</u></button></div>
+                <div class="panel-heading" id="content-header"><b>Thông tin tài khoản</b><button class="btn btn-link" id="btn-edit" style="color: blue; font-size: 18px; margin-right: 20px;"><u>Sửa thông tin</u></button></div>
 
                 <div class="panel-body" id="content">
 
@@ -35,7 +35,7 @@
                         <div class="row" style="margin-bottom: 50px"><b>Email</b>: <i>{{Auth::user()->email}}</i></div>
                         <div class="row" style="margin-bottom: 50px"><b>Ngày sinh</b>: <i>
                           @if(Auth::user()->ngaysinh)
-                            {{Auth::user()->ngaysinh}}
+                            {{date('d-m-Y', strtotime(Auth::user()->ngaysinh))}}
                           @else
                             Chưa cung cấp
                           @endif
@@ -48,7 +48,7 @@
                           @endif
                         </i></div>
                         <div class="row" style="margin-bottom: 50px"><b>Tỉnh Thành</b>: <i>
-                          @if($usertinh->ten)
+                          @if(Auth::user()->tinh)
                             {{$usertinh->ten}}
                           @else
                             Chưa cung cấp
@@ -102,7 +102,7 @@
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-3 control-label">Ngày sinh</label>
             <div class="col-sm-9">
-              <input type="date" class="form-control" id="date" name="ngaysinh" value="{{Auth::user()->ngaysinh}}" />
+              <input type="date" class="form-control" id="date" name="ngaysinh" value="{{date('d-m-Y', strtotime(Auth::user()->ngaysinh))}}" />
             </div>
           </div>
 
@@ -117,7 +117,9 @@
             <label for="inputEmail3" class="col-sm-3 control-label">Tỉnh Thành</label>
             <div class="col-sm-9">
               <select class="form-control" name="tinh">
+                @if(Auth::user()->tinh)
                   <option value="{{$usertinh->id}}">{{$usertinh->ten}}</option>
+                @endif
                   @foreach($tinh as $ti)
                     <option value="{{$ti->id}}">{{$ti->ten}}</option>
                   @endforeach
