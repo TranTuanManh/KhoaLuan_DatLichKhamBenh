@@ -20,11 +20,14 @@ Route::get('trang-chu',[
 	'uses' => 'PageController@getTrangChu'
 ]);
 
-Auth::routes();
-
 Route::get('dang-nhap',[
 	'as' => 'dangnhap',
 	'uses' => 'PageController@getDangNhap'
+]);
+
+Route::post('dang-nhap',[
+	'as' => 'dangnhap',
+	'uses' => 'PageController@postDangNhap'
 ]);
 
 Route::get('dang-ki',[

@@ -6,7 +6,9 @@
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading" id="content-header"><b>Thông tin tài khoản</b><button class="btn btn-link" id="btn-edit" style="color: blue; font-size: 18px; margin-right: 20px;"><u>Sửa thông tin</u></button></div>
-
+                @if(Session::has('thanhcong'))
+                  <div class="alert alert-success" style="font-size: 18px">{{Session::get('thanhcong')}}</div>
+                @endif
                 <div class="panel-body" id="content">
 
                   <div class="row">
@@ -47,6 +49,22 @@
                             Chưa cung cấp
                           @endif
                         </i></div>
+                      @if(Auth::user()->role == 2)
+                        <div class="row" style="margin-bottom: 50px"><b>Địa chỉ làm việc</b>: <i>
+                          @if(Auth::user()->bacsi->diachi)
+                            {{Auth::user()->bacsi->diachi}}
+                          @else
+                            Chưa cung cấp
+                          @endif
+                        </i></div>
+                        <div class="row" style="margin-bottom: 50px"><b>Khoa làm việc</b>: <i>
+                          @if(Auth::user()->bacsi->khoalamviec)
+                            {{Auth::user()->bacsi->khoalamviec}}
+                          @else
+                            Chưa cung cấp
+                          @endif
+                        </i></div>
+                      @endif
                         <div class="row" style="margin-bottom: 50px"><b>Tỉnh Thành</b>: <i>
                           @if(Auth::user()->tinh)
                             {{$usertinh->ten}}
@@ -54,7 +72,13 @@
                             Chưa cung cấp
                           @endif
                         </i></div>
-                        <div class="row" style="margin-bottom: 50px"><b>Loại tài khoản</b>: <i>Bệnh nhân</i></div>
+                        <div class="row" style="margin-bottom: 50px"><b>Loại tài khoản</b>:
+                        @if(Auth::user()->role == 1)
+                          <i>Bệnh nhân</i>
+                        @else
+                          <i>Bác sĩ</i>
+                        @endif
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -112,6 +136,20 @@
               <input type="text" class="form-control" name="dienthoai" value="{{Auth::user()->dienthoai}}" />
             </div>
           </div>
+          @if(Auth::user()->role == 2)
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-3 control-label">Địa chỉ</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="diachi" value="{{Auth::user()->bacsi->diachi}}" />
+              </div>
+            </div>
+            <div class="form-group">
+            <label for="inputEmail3" class="col-sm-3 control-label">Khoa làm việc</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="khoalamviec" value="{{Auth::user()->bacsi->khoalamviec}}" />
+            </div>
+          </div>
+          @endif
 
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-3 control-label">Tỉnh Thành</label>

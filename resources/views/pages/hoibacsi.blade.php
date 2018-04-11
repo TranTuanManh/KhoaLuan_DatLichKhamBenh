@@ -88,7 +88,7 @@
 						</ul><br><br><br>
 					</form>
 			@foreach($baiviet as $bv)
-				<ul class="aside-menu aside-group-6" onload="">
+				<ul class="aside-menu aside-group-6">
 					<div class="row">
 						<div class="col-md-1">
 							<img src="{{$bv->nguoihoi->avatar}}" width="50px">

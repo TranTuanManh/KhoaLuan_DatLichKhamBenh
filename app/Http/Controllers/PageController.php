@@ -27,12 +27,44 @@ class PageController extends Controller
     	return view('introduce.dangnhap');
     }
 
+    public function postDangNhap(Request $req){
+        $this->validate($req,
+            [
+                'email'=>'required|email',
+                'password'=>'required|min:6|max:20'
+            ],
+            [
+                'email.required'=>'Vui lòng nhập email',
+                'password.required'=>'Vui lòng nhập mật khẩu',
+                'password.min'=>'Mật khẩu không dưới 6 kí tự',
+                'email.email'=>'Không đúng định dạng email'
+            ]);
+        $credentials = array('email'=>$req->email, 'password'=>$req->password);
+        if(Auth::attempt($credentials)){
+            return redirect('trang-chu');
+        }
+        else{
+            return redirect()->back()->with('danger', 'Tài khoản hoặc mật khẩu chưa chính xác');
+        }
+    }
+
 
     public function getDangKi(){
     	return view('introduce.dangki');
     }
 
     public function postDangKi(Request $req){
+        $this->validate($req,
+            [
+                'email'=>'required|email',
+                'password'=>'required|min:6|max:20'
+            ],
+            [
+                'email.required'=>'Vui lòng nhập email',
+                'password.required'=>'Vui lòng nhập mật khẩu',
+                'password.min'=>'Mật khẩu không dưới 6 kí tự',
+                'email.email'=>'Không đúng định dạng email'
+            ]);
         $user = new User();
         $user->email = $req->email;
         $user->hoten = $req->hoten;
@@ -46,7 +78,16 @@ class PageController extends Controller
         }
         $user->remember_token = $req->_token;
         $user->password = bcrypt($req->password);
+        $exist_user = User::where('email', $req->email)->first();
+        if($exist_user){
+            return redirect()->back()->with('tontai', 'Tài khoản này đã tồn tại');
+        }
         $user->save();
+        if($req->role == 2){
+            $bacsi = new Bacsi();
+            $bacsi->id_user = $user->id;
+            $bacsi->save();
+        }
         return redirect('dang-nhap')->with('thanhcong', 'Tạo tài khoản thành công');
     }
 
@@ -55,7 +96,6 @@ class PageController extends Controller
         $baiviet = Baiviet::orderBy('created_at', 'DESC')->paginate(8);
         $bacsi = User::where('role', 2)->get(); 
         $binhluan = Binhluan::orderBy('created_at', 'ASC')->get();
-        //dd($binhluan); exit;
     	return view('pages.hoibacsi', compact('chude', 'bacsi', 'baiviet', 'binhluan'));
     }
 
@@ -94,6 +134,20 @@ class PageController extends Controller
     }
 
     public function postThongTin(Request $req){
+        if(Auth::user()->role==2){
+            $bacsi = Bacsi::where('id_user', Auth::user()->id)->first();
+            if($bacsi){
+                $bacsi->diachi = $req->diachi;
+                $bacsi->khoalamviec = $req->khoalamviec;
+            }
+            else{
+                $bacsi = new Bacsi();
+                $bacsi->id_user = Auth::user()->id;
+                $bacsi->diachi = $req->diachi;
+                $bacsi->khoalamviec = $req->khoalamviec;
+            }
+            $bacsi->save();
+        }
         $user = User::find(Auth::user()->id);
         $user->hoten = $req->hoten;
         $user->gioitinh = $req->gioitinh;
@@ -102,7 +156,7 @@ class PageController extends Controller
         $user->dienthoai = $req->dienthoai;
         $user->tinh = $req->tinh;
         $user->save();
-        return redirect()->back();
+        return redirect()->back()->with('thanhcong', 'Đổi thông tin thành công');
     }
 
     public function getMatKhau(){
@@ -110,15 +164,25 @@ class PageController extends Controller
     }
 
     public function postMatKhau(Request $req){
+        $this->validate($req,
+            [
+                'password'=>'required|min:6|max:20|confirmed'
+            ],
+            [
+                'password.max'=>'Mật khẩu không quá 20 kí tự',
+                'password.required'=>'Vui lòng nhập mật khẩu',
+                'password.min'=>'Mật khẩu không dưới 6 kí tự',
+                'password.confirmed'=>'Mật khẩu xác nhận không trùng nhau'
+            ]);
         $user = User::find(Auth::user()->id);
         if (Hash::check($req->old_password, $user->password)){
-            $user->password = bcrypt($req->new_password);
+            $user->password = bcrypt($req->password);
             $user->save();
         }
         else{
-            return redirect()->back()->with('Doimatkhauthatbai');
+            return redirect()->back()->with('thatbai', 'Mật khẩu cũ không chính xác');
         }
-        return redirect()->back();
+        return redirect()->back()->with('thanhcong', 'Đổi mật khẩu thành công');
     }
 
     public function getTinTuc(){
@@ -157,7 +221,7 @@ class PageController extends Controller
         $thongtinkhambenh->lido = $req->lido;
         $thongtinkhambenh->id_nguoigui = Auth::user()->id;
         $thongtinkhambenh->save();
-        return redirect()->back();
+        return redirect()->back()->with('thanhcong', 'Đặt lịch khám bệnh thành công');
     }
 
 
@@ -174,7 +238,7 @@ class PageController extends Controller
         $thongtinkhambenh->lido = $req->lido;
         $thongtinkhambenh->id_nguoigui = Auth::user()->id;
         $thongtinkhambenh->save();
-        return redirect()->back();
+        return redirect()->back()->with('thanhcong', 'Đặt lịch khám bệnh thành công');
     }
 
     public function getAjax(){

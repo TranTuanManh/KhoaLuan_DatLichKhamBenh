@@ -8,7 +8,7 @@
 		<div id="content">
 			<form action="{{route('datlichkham')}}" method="post" class="beta-form-checkout">
 				<input type="hidden" name="_token" value="{{csrf_token()}}"> 
-				<div class="row">@if(Session::has('thongbao')) <div class="alert alert-success">{{Session::get('thongbao')}}</div>@endif</div>
+				<div class="row">@if(Session::has('thanhcong')) <div class="alert alert-success" style="font-size: 18px">{{Session::get('thanhcong')}}</div>@endif</div>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4 style="">Thông tin người bệnh</h4><br>
@@ -25,7 +25,7 @@
 						<div class="form-block">
 							<label>Giới tính<span>*</span> </label>
 						@if(Auth::check())
-							@if(Auth::user()->gioitinh=='nam')
+							@if(Auth::user()->gioitinh=='Nam')
 								<input id="gender" type="radio" class="input-radio" name="gender" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
 								<input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Nữ</span>
 							@else

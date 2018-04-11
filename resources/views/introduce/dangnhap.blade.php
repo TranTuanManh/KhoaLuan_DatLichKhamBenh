@@ -14,12 +14,25 @@
 	<div class="back-ground">
 		<div class="form-area">
 			<h3 class="form-title">Hệ thống đặt lịch khám bệnh</h3>
-			<form action="{{route('login')}}" method="post">
+			<form action="{{route('dangnhap')}}" method="post">
 			<input type="hidden" name="_token" value="{{csrf_token()}}"> 
+				@if(count($errors)>0)
+					<div class="alert alert-danger" style="font-size: 18px">
+						@foreach($errors->all() as $err)
+							{{$err}}
+						@endforeach
+					</div>
+				@endif
+				@if(Session::has('danger'))
+					<div class="alert alert-danger" style="font-size: 18px">{{Session::get('danger')}}</div>
+				@endif
+				@if(Session::has('thanhcong'))
+					<div class="alert alert-success" style="font-size: 18px">{{Session::get('thanhcong')}}</div>
+				@endif
 				<p>Email</p>
-				<input type="text" name="email" placeholder="Nhập email của bạn">
+				<input type="text" name="email" placeholder="Nhập email của bạn" required>
 				<p>Mật khẩu</p>
-				<input type="password" name="password" placeholder="Nhập mật khẩu của bạn">
+				<input type="password" name="password" placeholder="Nhập mật khẩu của bạn" required>
 				<input type="submit" name="submit" value="Đăng nhập">
 				<a href="#">Quên mật khẩu?</a><br><br>
 				<a href="{{route('dangki')}}">Chưa có tài khoản? Đăng kí ngay!</a>

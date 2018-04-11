@@ -61,18 +61,21 @@
 								<span>Tin tức</span>
 							</a>
 						</li>
+						@if(Auth::check())
 						<li>
 							<a href="{{route('hoibacsi')}}">
 								<i class="fa fa-question-circle"></i>
 								<span>Hỏi bác sĩ</span>
 							</a>
 						</li>
+						@endif
 						<li>
 							<a href="{{route('tracuu')}}">
 								<i class="fa fa-search"></i>
 								<span>Tra cứu</span>
 							</a>
 						</li>
+						@if(Auth::check())
 						<li>
 							<a href="{{route('lichkhambenh')}}">
 								<i class="fa fa-envelope-o"></i>
@@ -80,6 +83,7 @@
 								<span class="span-mail">{{$count}}</span>
 							</a>
 						</li>
+						@endif
 						<li>
 							<a href="{{route('datlichkham')}}">
 								<i class="fa fa-tint"></i>
