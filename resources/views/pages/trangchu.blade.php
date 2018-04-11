@@ -24,62 +24,22 @@
 							</div>
 
 							<div class="row">
+							@foreach($bacsi as $bs)
 								<div class="col-sm-3">
 									<div class="single-item">
 										<div class="single-item-header">
-											<a href="{{route('datlich', 2)}}"><img src="assets/dest/images/products/1.jpg" alt=""></a>
+											<a href="{{route('datlich', $bs->id)}}"><img src="{{$bs->avatar}}" alt="" width="270px" height="320px"></a>
 										</div>
 										<div class="single-item-body">
-											<a href="{{route('datlich', 2)}}"><p class="single-item-title" style="font-size: 16px">Kem dưỡng ẩm Hada Labo chính hãng giá bao nhiêu?</p></a>
+											<a href="{{route('datlich', $bs->id)}}"><p class="single-item-title" style="font-size: 18px;">bác sĩ <b>{{$bs->hoten}}</b></p></a>
 										</div>
 										<div class="single-item-caption">
-											<a class="btn btn-primary" href="{{route('datlich', 2)}}">Đặt lịch hẹn ngay <i class="fa fa-chevron-right"></i></a>
+											<a class="btn btn-primary" href="{{route('datlich', $bs->id)}}">Đặt lịch hẹn ngay <i class="fa fa-chevron-right"></i></a>
 										</div>
 
 									</div>
 								</div>
-								<div class="col-sm-3">
-									<div class="single-item">
-										<div class="single-item-header">
-											<a href="{{route('datlichkham')}}"><img src="assets/dest/images/products/1.jpg" alt=""></a>
-										</div>
-										<div class="single-item-body">
-											<a href="{{route('datlichkham')}}"><p class="single-item-title" style="font-size: 16px">Kem dưỡng ẩm Hada Labo chính hãng giá bao nhiêu?</p></a>
-										</div>
-										<div class="single-item-caption">
-											<a class="btn btn-primary" href="{{route('datlichkham')}}">Đặt lịch hẹn ngay <i class="fa fa-chevron-right"></i></a>
-										</div>
-
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="single-item">
-										<div class="single-item-header">
-											<a href="{{route('datlichkham')}}"><img src="assets/dest/images/products/1.jpg" alt=""></a>
-										</div>
-										<div class="single-item-body">
-											<a href="{{route('datlichkham')}}"><p class="single-item-title" style="font-size: 16px">Kem dưỡng ẩm Hada Labo chính hãng giá bao nhiêu?</p></a>
-										</div>
-										<div class="single-item-caption">
-											<a class="btn btn-primary" href="{{route('datlichkham')}}">Đặt lịch hẹn ngay <i class="fa fa-chevron-right"></i></a>
-										</div>
-
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="single-item">
-										<div class="single-item-header">
-											<a href="{{route('datlichkham')}}"><img src="assets/dest/images/products/1.jpg" alt=""></a>
-										</div>
-										<div class="single-item-body">
-											<a href="{{route('datlichkham')}}"><p class="single-item-title" style="font-size: 16px">Kem dưỡng ẩm Hada Labo chính hãng giá bao nhiêu?</p></a>
-										</div>
-										<div class="single-item-caption">
-											<a class="btn btn-primary" href="{{route('datlichkham')}}">Đặt lịch hẹn ngay <i class="fa fa-chevron-right"></i></a>
-										</div>
-
-									</div>
-								</div>
+							@endforeach
 							</div>
 						</div> <!-- .beta-products-list -->
 

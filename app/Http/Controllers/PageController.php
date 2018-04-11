@@ -20,7 +20,8 @@ class PageController extends Controller
 {
     public function getTrangChu(){
         $tintuc = Tintuc::orderBy('created_at', 'DESC')->paginate(4);
-    	return view('pages.trangchu', compact('tintuc'));
+        $bacsi = User::where('role', 2)->paginate(4);
+    	return view('pages.trangchu', compact('tintuc', 'bacsi'));
     }
 
     public function getDangNhap(){

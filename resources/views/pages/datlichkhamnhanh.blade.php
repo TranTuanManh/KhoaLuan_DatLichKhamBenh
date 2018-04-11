@@ -25,7 +25,7 @@
 						<div class="form-block">
 							<label>Giới tính<span>*</span> </label>
 						@if(Auth::check())
-							@if(Auth::user()->gioitinh=='nam')
+							@if(Auth::user()->gioitinh=='Nam')
 								<input id="gender" type="radio" class="input-radio" name="gender" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
 								<input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Nữ</span>
 							@else
