@@ -165,7 +165,8 @@
             </div>
           </div>
             <div class="modal-footer">
-              <input type="submit" class="btn btn-primary" value="Gửi"></input>
+              <button id='btn_save' class="btn btn-primary btn-flat" type="submit"><i class="fa fa-save"> Lưu</i></button>
+              <button type="input" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"> Thoát</i></button>
             </div>   
         </form>
         </div>

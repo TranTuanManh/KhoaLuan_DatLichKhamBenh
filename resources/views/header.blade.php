@@ -57,7 +57,7 @@
 						</li>
 						<li>
 							<a href="{{route('tintuc')}}">
-								<i class="fa fa-book"></i>
+								<i class="fa fa-newspaper-o"></i>
 								<span>Tin tức</span>
 							</a>
 						</li>
@@ -84,12 +84,31 @@
 							</a>
 						</li>
 						@endif
-						<li>
-							<a href="{{route('datlichkham')}}">
-								<i class="fa fa-tint"></i>
-								<span>Đặt lịch khám</span>
-							</a>
-						</li>
+						@if(Auth::check())
+							@if(Auth::user()->role == 1)
+							<li>
+								<a href="{{route('datlichkham')}}">
+									<i class="fa fa-tint"></i>
+									<span>Đặt lịch khám</span>
+								</a>
+							</li>
+							@else
+							<li>
+								<a href="{{route('quanlylichkham')}}">
+									<i class="fa fa-calendar"></i>
+									<span>Quản lí lịch khám</span>
+									<span class="span-mail">{{$count}}</span>
+								</a>
+							</li>
+							@endif
+						@else
+							<li>
+								<a href="{{route('datlichkham')}}">
+									<i class="fa fa-tint"></i>
+									<span>Đặt lịch khám</span>
+								</a>
+							</li>
+						@endif
 					</ul>
 				</nav>
 			</div> <!-- .container -->

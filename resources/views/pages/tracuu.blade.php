@@ -13,7 +13,7 @@
 						<div class="bg-white grid-item">
 							<div class="item-content">
 								<i class="fa fa-user-md" aria-hidden="true"></i><br>
-								<span>43.511</span>
+								<span>1.300</span>
 								<h4>Bác sĩ</h4>
 							</div>						
 						</div>
@@ -24,9 +24,21 @@
 						<a href="https://vicare.vn/danh-sach/bac-si/">
 						<div class="bg-white grid-item">
 							<div class="item-content">
-								<i class="fa fa-user-md" aria-hidden="true"></i><br>
-								<span>43.511</span>
-								<h4>Bác sĩ</h4>
+								<i class="fa fa-hospital-o" aria-hidden="true"></i><br>
+								<span>200</span>
+								<h4>Cơ sở y tế</h4>
+							</div>						
+						</div>
+						</a>
+					</div>
+
+					<div class="col-xs-6 col-sm-4 text-center">
+						<a href="https://vicare.vn/danh-sach/bac-si/">
+						<div class="bg-white grid-item">
+							<div class="item-content">
+								<i class="fa fa-bed" aria-hidden="true"></i><br>
+								<span>563</span>
+								<h4>Các loại bệnh</h4>
 							</div>						
 						</div>
 						</a>
@@ -37,8 +49,8 @@
 						<div class="bg-white grid-item">
 							<div class="item-content">
 								<i class="fa fa-user-md" aria-hidden="true"></i><br>
-								<span>43.511</span>
-								<h4>Bác sĩ</h4>
+								<span>0</span>
+								<h4>Đang cập nhật...</h4>
 							</div>						
 						</div>
 						</a>
@@ -49,8 +61,8 @@
 						<div class="bg-white grid-item">
 							<div class="item-content">
 								<i class="fa fa-user-md" aria-hidden="true"></i><br>
-								<span>43.511</span>
-								<h4>Bác sĩ</h4>
+								<span>0</span>
+								<h4>Đang cập nhật...</h4>
 							</div>						
 						</div>
 						</a>
@@ -61,20 +73,8 @@
 						<div class="bg-white grid-item">
 							<div class="item-content">
 								<i class="fa fa-user-md" aria-hidden="true"></i><br>
-								<span>43.511</span>
-								<h4>Bác sĩ</h4>
-							</div>						
-						</div>
-						</a>
-					</div>
-
-					<div class="col-xs-6 col-sm-4 text-center">
-						<a href="https://vicare.vn/danh-sach/bac-si/">
-						<div class="bg-white grid-item">
-							<div class="item-content">
-								<i class="fa fa-user-md" aria-hidden="true"></i><br>
-								<span>43.511</span>
-								<h4>Bác sĩ</h4>
+								<span>0</span>
+								<h4>Đang cập nhật...</h4>
 							</div>						
 						</div>
 						</a>

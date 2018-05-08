@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function(){
-	return redirect('gioi-thieu');
+	return redirect('trang-chu');
 });
 
 Route::get('trang-chu',[
@@ -85,6 +85,11 @@ Route::get('tin-tuc',[
 	'uses' => 'PageController@getTinTuc'
 ]);
 
+Route::get('tin-tuc/{id_chude}',[
+	'as' => 'pl_tintuc',
+	'uses' => 'PageController@getPhanLoaiTinTuc'
+]);
+
 Route::get('tra-cuu',[
 	'as' => 'tracuu',
 	'uses' => 'PageController@getTraCuu'
@@ -110,10 +115,22 @@ Route::post('dat-lich-kham',[
 	'uses' => 'PageController@postDatLichKham'
 ]);
 
-Route::get('ajax-subinfor',[
+Route::get('quan-ly-lich-kham',[
+	'as' => 'quanlylichkham',
+	'uses' => 'PageController@getQuanLyLichKham'
+]);
+
+Route::post('ajax-subinfor',[
 	'as' => 'ajax',
 	'uses' => 'PageController@getAjax'
  ]);
+
+Route::post('/loadList', 'PageController@loadList');
+Route::post('/add', 'PageController@add');
+Route::post('/lichkham_add', 'PageController@lichkham_add');
+Route::post('/edit', 'PageController@edit');
+Route::post('/update', 'PageController@update');
+Route::post('/delete', 'PageController@delete');
 
 Route::post('comment',[
 	'as' => 'comment',

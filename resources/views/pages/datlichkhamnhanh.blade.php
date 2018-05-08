@@ -1,9 +1,9 @@
 @extends('master')
 @section('title-content')
 	<title>Đặt lịch khám</title>
-	<link rel="stylesheet" type="text/css" href="assets/dest/css/datlichkham.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/dest/css/datlichkham.css') }}">
 @endsection
-@section('content')	
+@section('content')
 	<div class="container" style="height:76vh">
 		<div id="content">
 			<form action="{{route('postdatlich')}}" method="post" class="beta-form-checkout">
@@ -26,17 +26,17 @@
 							<label>Giới tính<span>*</span> </label>
 						@if(Auth::check())
 							@if(Auth::user()->gioitinh=='Nam')
-								<input id="gender" type="radio" class="input-radio" name="gender" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
-								<input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Nữ</span>
+								<input id="gender" type="radio" class="input-radio" name="gender" value="Nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
+								<input id="gender" type="radio" class="input-radio" name="gender" value="Nữ" style="width: 10%"><span>Nữ</span>
 							@else
-								<input id="gender" type="radio" class="input-radio" name="gender" value="nam"" style="width: 10%"><span style="margin-right: 10%">Nam</span>
-								<input id="gender" type="radio" class="input-radio" name="gender" value="nữ" checked="checked" style="width: 10%"><span>Nữ</span>
+								<input id="gender" type="radio" class="input-radio" name="gender" value="Nam"" style="width: 10%"><span style="margin-right: 10%">Nam</span>
+								<input id="gender" type="radio" class="input-radio" name="gender" value="Nữ" checked="checked" style="width: 10%"><span>Nữ</span>
 							@endif
 						@else
-							<input id="gender" type="radio" class="input-radio" name="gender" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
-							<input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Nữ</span>
+							<input id="gender" type="radio" class="input-radio" name="gender" value="Nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
+							<input id="gender" type="radio" class="input-radio" name="gender" value="Nữ" style="width: 10%"><span>Nữ</span>
 						@endif
-										
+
 						</div><br>
 
 						<div class="form-block">	
@@ -80,53 +80,64 @@
 							<div class="your-order-head"><h5 style="color: #0277b8">Đặt lịch khám</h5></div>
 							<div class="your-order-body" style="padding: 0px 10px">
 										<div class="your-order-item">
-											<div class="form-block">
+											<div class="col-md-3">
 												<p class="font-large"><b style="font-size: 18px">Hẹn với:</b></p>
-													<select class="form-control" id="thongtinbacsi" style="margin-left: 60px;" name="id_bacsi">
-														<option value="{{$currentbacsi->id}}">{{$currentbacsi->hoten}}</option>
-														@foreach($bacsi as $bs)
-															<option value="{{$bs->id}}">{{$bs->hoten}}</option>
-														@endforeach
-													</select>											
+											</div>
+											<div class="col-md-9">
+												<select class="form-control" id="thongtinbacsi" name="id_bacsi">
+													<option value="{{$currentbacsi->id}}">{{$currentbacsi->hoten}}</option>
+													@foreach($bacsi as $bs)
+														<option value="{{$bs->id}}">{{$bs->hoten}}</option>
+													@endforeach
+												</select>
 											</div>
 											<div class="clearfix"></div>
 										</div>
 
 										<div class="your-order-item">
-											<div class="form-block">
+											<div class="col-md-3">
 												<p class="font-large"><b style="font-size: 18px">Thời gian:</b></p>
-													<select class="form-control" style="margin-left: 50px;" name="time">
-														<option value="1">Buổi sáng</option>
-														<option value="2">Buổi chiều</option>
-													</select>											
+											</div>
+											<div class="col-md-9">
+												<select class="form-control" name="time">
+													<option value="1">Buổi sáng</option>
+													<option value="2">Buổi chiều</option>
+												</select>
 											</div>
 											<div class="clearfix"></div>
 										</div>
 
 										<div class="your-order-item">
-											<div class="form-block">
+											<div class="col-md-3">
 												<p class="font-large"><b style="font-size: 18px">Ngày hẹn:</b></p>
-												<input class="form-control" type="date" name="ngayhen" style="margin-left: 50px;" required>		
+											</div>
+											<div class="col-md-9">
+												<input class="form-control" type="date" name="ngayhen" required>
 											</div>
 											<div class="clearfix"></div>
 										</div>
 
+
 										<div class="your-order-item" style="background-color: #e1e3e6">
-											<div class="form-block">
+											<div class="col-md-3">
 												<p class="font-large"><b style="font-size: 18px">Địa chỉ:</b></p>
-												<span style="margin-left: 75px;" id="address-doctor" name="address-doctor">
+											</div>
+											<div class="col-md-9">
+												<span id="address-doctor" name="address-doctor">
 													<span style="font-size:16px">{{$bacsiinfo->diachi}}</span>
-												</span>	
+												</span>
 											</div>
 											<div class="clearfix"></div>
 										</div>
 
 										<div class="your-order-item" style="background-color: #e1e3e6">
-											<div class="form-block">
+											<div class="col-md-3">
 												<p class="font-large"><b style="font-size: 18px">Khoa:</b></p>
-												<span style="margin-left: 95px;" id="department">
+											</div>
+											<div class="col-md-9">
+												<span id="department">
 													<span style="font-size:16px">{{$bacsiinfo->khoalamviec}}</span>
-												</span>	
+												</span>
 											</div>
 											<div class="clearfix"></div>
 										</div>

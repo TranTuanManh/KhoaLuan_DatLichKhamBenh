@@ -5,23 +5,24 @@
 				<nav class="main-menu">
 					<ul class="l-inline ov">
 						<li>
+							<a href="{{route('trangchu')}}">
+								<i class="fa fa-home"></i>
+								<span>Trang chủ</span>
+							</a>
+						</li>
+						<li>
 							<a href="{{route('gioithieu')}}">
 								<i class="fa fa-book"></i>
 								<span>Giới thiệu</span>
 							</a>
 						</li>
 						<li>
-							<a href="{{route('hoibacsi')}}">
-								<i class="fa fa-question-circle"></i>
-								<span>Liên hệ</span>
-							</a>
-						</li>
-						<li>
 							<a href="{{route('tintuc')}}">
-								<i class="fa fa-book"></i>
+								<i class="fa fa-newspaper-o"></i>
 								<span>Tin tức</span>
 							</a>
 						</li>
+						<li>
 					</ul>
 				</nav>
 			</div> <!-- .container -->

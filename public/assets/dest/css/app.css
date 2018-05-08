@@ -127,3 +127,13 @@
 	color: white;
     background-color: #0277b8;
 }
+
+table#table-data tr.selected td {
+    background-color: #dae5fb;
+    color: #000000;
+}
+
+.control-label.required:after { 
+   content:" *";
+   color:red;
+}

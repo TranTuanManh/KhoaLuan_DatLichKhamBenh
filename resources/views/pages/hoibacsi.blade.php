@@ -63,7 +63,7 @@
 								@endforeach
 							</select>
 
-							<select style="width: 20%; height: 30px; font-size: 15px" name="id_nguoiduochoi">
+							<select class="chzn-select" style="width: 20%; height: 30px; font-size: 15px" name="id_nguoiduochoi">
 								<option>Chọn bác sĩ để hỏi</option>
 								@foreach($bacsi as $bs)
 									<option value="{{$bs->id}}" style="color: #4267b2">{{$bs->hoten}}</option>
@@ -77,7 +77,7 @@
 								<input type="button" class="btn btn-primary" id="button-upload" value="Ảnh đính kèm" name="file_upload" onclick="document.getElementById('file-upload').click()" 
 									style="border-radius: 10px; position: absolute; margin-top: -20px; margin-left: 0px" />
 							</div>
-						</div>					
+						</div>
 					</div>
 					<br>
 				</ul>
@@ -171,11 +171,10 @@
 			</div>
 		</div>
 	</div>
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 		var textarea = document.querySelector('textarea');
 		textarea.addEventListener('keydown', autosize);
-             
+
 		function autosize(){
   			var el = this;
   			setTimeout(function(){
@@ -195,7 +194,7 @@
 				obj.readAsDataURL(this.files[0]);
 			}
 		}
-		
+
 			function myfunction(id){
 				$('.submitform' + id).on('submit', function (event) {
 	            event.preventDefault();
@@ -208,10 +207,10 @@
 	                //id: $("input[name='id_baiviet']").val(),
 	                success:function(data){
 	                	if(data.error != ''){
-	                		$('.submitform' + id)[0].reset();      		
+	                		$('.submitform' + id)[0].reset();
 	                		}
 	                	}
-	                	
+
 	            	});
 	            load_comment(id);return;
 	        	}); 
@@ -222,7 +221,7 @@
 					url: 'loadcomment',
 					method: 'GET',
 					success:function(data){
-						$('.display_comment' + id).html(data);
+						$('.display_comment' + id).append(data);
 					}
 				});
 			}

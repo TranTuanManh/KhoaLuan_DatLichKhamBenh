@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://efy.core/system/questions -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css" id="nanobarcss">.nanobar{width:100%;height:2px;z-index:9999;top:0}.bar{width:0;height:100%;background:#CD0202}</style>
+        
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<link rel="icon" type="image/ico" href="http://efy.core/public/images/favicon.png">
+        <title>Quản Trị Hệ Thống</title>
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="jZA4281PIA098IwXA3K3Ww2ucWjToE4jPwdYVMwz">
+        <!-- Bootstrap -->
+        <link href="./f_files/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="./f_files/font-awesome.min.css" rel="stylesheet">
+        <link href="./f_files/style.css" rel="stylesheet">
+        <link href="./f_files/green.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script type="text/jscript" src="./f_files/jquery-3.1.1.js.download"></script>
+        <script type="text/jscript" src="./f_files/jquery-comfirm.js.download"></script>
+         <!-- Bootstrap Core JavaScript -->
+        <script type="text/jscript" src="./f_files/bootstrap.min.js.download"></script>
+        <!-- jQuery sticky menu -->
+        <script type="text/jscript" src="./f_files/bootstrap-confirmation.js.download"></script>
+        <script type="text/jscript" src="./f_files/loadbar.js.download"></script>
+         <!-- main Script -->
+        <script type="text/jscript" src="./f_files/app.min.js.download"></script>
+        <script type="text/jscript" src="./f_files/EfyLibrary.js.download"></script>
+        <script type="text/jscript" src="./f_files/TableXml.js.download"></script>
+    <script src="./f_files/chosen.jquery.min.js.download" type="text/javascript" charset="utf-8"></script><script src="./f_files/bootstrap-confirmation.js.download" type="text/javascript" charset="utf-8"></script><script src="./f_files/jstree.min.js.download" type="text/javascript" charset="utf-8"></script><script src="./f_files/jstreetable.js.download" type="text/javascript" charset="utf-8"></script><script src="./f_files/Js_Question.js.download" type="text/javascript" charset="utf-8"></script><script src="./f_files/jquery.validate.js.download" type="text/javascript" charset="utf-8"></script><link rel="stylesheet" type="text/css" href="./f_files/bootstrap-chosen.css"><link rel="stylesheet" type="text/css" href="./f_files/style.min.css"></head>
+    <body class="skin-green sidebar-mini modal-open" style="padding-right: 4px;">
+	
+		 <div class="main_loadding" style="display: none;">
+    		<svg class="spinner-container" viewBox="0 0 44 44">
+			    <circle class="path" cx="22" cy="22" r="20" fill="none" stroke-width="4"></circle>  
+			</svg>
+    	</div>
+        <div id="loadding" style="display: none;"></div>
+        <!-- Banner -->
+        <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="navbar-banner">
+		 <a class="btn btn-sm hty-btn-fab hty-ripple-effect pull-left hty-sidebar-toggle">
+			<i class="fa fa-bars" aria-hidden="true"></i>
+		 </a>	
+		 <a class="navbar-brand f-logo" href="http://efy.core/system/questions#">
+							<p class="first-text">CÔNG TY CỔ PHẦN CÔNG NGHỆ TIN HỌC EFY VIỆT NAM</p>
+						<p class="second-text">MÔI TRƯỜNG PHÁT TRIỂN</p>
+		  </a>
+	  </div>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="http://efy.core/system/questions#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="./f_files/man.png" class="user-image" alt="User Image">
+              <span class="hidden-xs"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="./f_files/man.png" class="img-circle" alt="User Image">
+                <p>
+                 
+                </p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a id="change-password" url="http://efy.core/admin/login/changepassword" href="http://efy.core/system/questions#" class="btn btn-default btn-flat">Đổi mật khẩu</a>
+                </div>
+                <div class="pull-right">
+                  <a href="http://efy.core/admin/login/logout" class="btn btn-default btn-flat">Thoát</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>		<!-- Sidebar -->
+        <aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="header">Chức năng</li>
+                                                        <li id="main_users"><a role="button" href="http://efy.core/system/users"><i class="fa fa-user-circle"></i><span>Quản trị người dùng</span></a></li>                                                                            <li id="main_listtype"><a href="http://efy.core/system/questions#"><i class="fa fa-list"></i><span>Quản trị danh mục</span> <b class="caret"></b></a><ul class="treeview-menu"><li id="child_listtype"><a role="button" href="http://efy.core/system/listtype/listtype"><i class="fa fa-angle-double-right"></i><span>Loại danh mục</span></a></li><li id="child_list"><a role="button" href="http://efy.core/system/listtype/list"><i class="fa fa-angle-double-right"></i><span>Danh mục đối tượng</span></a></li></ul></li>                                                                            <li id="main_students"><a role="button" href="http://efy.core/system/students"><i class="fa fa-mortar-board"></i><span>Quản trị thí sinh</span></a></li>                                                                            <li id="main_questions" class="active"><a role="button" href="http://efy.core/system/questions"><i class="fa fa-bank"></i><span>Quản lý ngân hàng câu hỏi</span></a></li>                                        </ul>
+    </section>
+</aside>
+        <!-- Content -->
+        <div id="message-alert" class="content">
+            <h5><strong><i id="message-icon"></i> <span id="message-label"></span></strong></h5>
+            <span id="message-infor"></span>
+        </div>
+        <div id="main-content">   
+            <!-- /.content  -->
+<!-- /.content  -->
+<script type="text/javascript">
+    var arrJsCss = $.parseJSON('[{"type":"js","src":"http:\/\/efy.core\/public\/js\/assets\/chosen\/chosen.jquery.min.js"},{"type":"js","src":"http:\/\/efy.core\/public\/js\/assets\/bootstrap-confirmation.js"},{"type":"js","src":"http:\/\/efy.core\/public\/js\/assets\/jstree\/jstree.min.js"},{"type":"js","src":"http:\/\/efy.core\/public\/js\/assets\/jstree\/jstreetable.js"},{"type":"js","src":"http:\/\/efy.core\/public\/js\/System\/Questions\/Js_Question.js"},{"type":"js","src":"http:\/\/efy.core\/public\/js\/assets\/jquery.validate.js"},{"type":"css","src":"http:\/\/efy.core\/public\/css\/assets\/chosen\/bootstrap-chosen.css"},{"type":"css","src":"http:\/\/efy.core\/public\/css\/assets\/jsTree\/default\/style.min.css"}]');
+    EfyLib.loadFileJsCss(arrJsCss);
+</script>
+<form action="http://efy.core/system/index" method="POST" id="frmQuestion_index">
+<input type="hidden" name="_token" value="jZA4281PIA098IwXA3K3Ww2ucWjToE4jPwdYVMwz">
+<section class="content-wrapper">
+    <ol class="breadcrumb">
+        <li><a href="http://efy.core/system/questions"><i class="fa fa-bank"></i></a></li>
+        <li class="active">Quản lí ngân hàng câu hỏi</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label class="control-label col-md-4">Môn học</label>
+                            <div class="col-md-8">
+                                <select id="subject" name="subject" class="form-control chzn-select input-sm" message="" style="display: none;">
+                                    <option value="">Chọn</option>
+                                                                            <option value="MATH">Toán học</option>
+                                                                            <option value="CHEM">Hóa học</option>
+                                                                            <option value="GEO">Địa lý</option>
+                                                                            <option value="ENG">Tiếng Anh</option>
+                                                                            <option value="LIT">Văn học</option>
+                                                                            <option value="PHYSIC">Vật lý</option>
+                                                                            <option value="PHILO">Triết học</option>
+                                                                            <option value="HIS">Lịch sử</option>
+                                                                    </select><div class="chosen-container chosen-container-single" style="width: 100%;" title="" id="subject_chosen"><a class="chosen-single"><span>Chọn</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row ">
+                            <label class="control-label col-md-4">Hình thức thi</label>
+                            <div class="col-md-8">
+                                <select id="contest_formality" name="contest_formality" class="form-control chzn-select input-sm" message="" style="display: none;">
+                                    <option value="">Chọn</option>
+                                                                            <option value="THU">Thi thử</option>
+                                                                            <option value="THAT">Thi thật</option>
+                                                                    </select><div class="chosen-container chosen-container-single" style="width: 100%;" title="" id="contest_formality_chosen"><a class="chosen-single"><span>Chọn</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <div class="row ">
+                            <label class="control-label col-md-4">Nhóm đề thi</label>
+                            <div class="col-md-8">
+                                <select id="contest_group" name="contest_group" class="form-control chzn-select input-sm" message="" style="display: none;">
+                                    <option value="">Chọn</option>
+                                                                            <option value="CHUNGCHI">Thi chứng chỉ</option>
+                                                                            <option value="HOCKY">Thi học kì</option>
+                                                                            <option value="TOTNGHIEP">Thi tốt nghiệp</option>
+                                                                    </select><div class="chosen-container chosen-container-single" style="width: 100%;" title="" id="contest_group_chosen"><a class="chosen-single"><span>Chọn</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row ">
+                            <label class="control-label col-md-4">Tìm kiếm</label>
+                            <div class="col-md-8 text-right">
+                                <input name="search_string" class="form-control input-sm" value="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group input-group-index">
+                <div class="pull-left">
+                    <button class="btn btn-primary btn-flat search" id="btn_search" data-loading-text="Tìm kiếm..." type="button">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    Tìm kiếm</button>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-primary btn-flat" id="btn_add" type="button" data-toggle="tooltip" data-original-title="Thêm"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-success btn-flat" id="btn_edit" type="button" data-toggle="tooltip" data-original-title="Sửa"><i class="fa fa-pencil"></i></button>
+
+                    <button class="btn btn-danger" id="btn_delete" type="button" data-toggle="confirmation" data-btn-ok-label="Xóa" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-danger" data-btn-cancel-label="Đóng" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-default" data-placement="left" data-original-title="Bạn có chắc muốn xóa?"><i class="fa fa-trash-o"></i></button>
+                </div>
+            </div>
+            <!-- Màn hình danh sách -->
+            <div class="row" id="table-container"></div>
+                <table class="table table-striped table-bordered dataTable no-footer" align="center" id="table-data">
+                    <colgroup><col width="5%">
+                    <col width="5%">
+                    <col width="25%">
+                    <col width="7%">
+                    <col width="10%">
+                    <col width="7%">
+                    <col width="5%">
+                    <col width="8%">
+                    <col width="14%">
+                    <col width="14%">
+                    </colgroup><thead class="thead-inverse">
+                    <tr class="header">
+                    <td align="center"><b><input name="chk_all_item_id" onclick="checkbox_all_item_id(document.forms[0].chk_item_id);" type="checkbox"></b></td>
+                        <td align="center"><b>Mã câu hỏi</b></td>
+                        <td align="center"><b>Nội dung câu hỏi</b></td>
+                        <td align="center"><b>Hình thức thi</b></td>
+                        <td align="center"><b>Nhóm đề thi</b></td>
+                        <td align="center"><b>Môn học</b></td>
+                        <td align="center"><b>Độ khó</b></td>
+                        <td align="center"><b>Loại câu trả lời</b></td>
+                        <td align="center"><b>Các phương án</b></td>
+                        <td align="center"><b>Đáp án đúng</b></td>
+                    </tr>
+                    </thead>
+                    <tbody><tr><td align="center"><input ondblclick="" onclick="{select_checkbox_row(this);}" name="chk_item_id" value="A49BD9E1-2FCF-4F4F-B3BC-01C8BCCE2308" type="checkbox"></td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">QUES0</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Ai là tác giả của bài thơ "Nhớ rừng"?</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Thi thử</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Thi tốt nghiệp</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Văn học</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Dễ</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Một đáp án</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="left">A. Nguyễn Du<br>B. Thế Lữ<br>C. Chế Lan Viên<br>D. Tố Hữu<br></td><td class="data" ondblclick="" onclick="{select_row(this);}" align="left">B. Thế Lữ<br></td></tr><tr><td align="center"><input ondblclick="" onclick="{select_checkbox_row(this);}" name="chk_item_id" value="ADEF6168-67B2-4D39-9678-0878D59EA4B4" type="checkbox"></td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">QUES64</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Đang cập nhật...</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Thi thật</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Thi học kì</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Toán học</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Trung bình</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Một đáp án</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="left"></td><td class="data" ondblclick="" onclick="{select_row(this);}" align="left"></td></tr><tr><td align="center"><input ondblclick="" onclick="{select_checkbox_row(this);}" name="chk_item_id" value="C157CFF9-38DE-4BB0-AD30-06F01E44C97D" type="checkbox"></td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">QUES69</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Vị tướng nào đã chiến thắng trên sông Bạch Đằng?</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Thi thật</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Thi tốt nghiệp</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Lịch sử</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Trung bình</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="center">Nhiều đáp án</td><td class="data" ondblclick="" onclick="{select_row(this);}" align="left">A. Lê Đại Hành<br>B. Ngô Quyền<br>C. Lê Lợi<br>D. Trần Hưng Đạo<br></td><td class="data" ondblclick="" onclick="{select_row(this);}" align="left">A. Lê Đại Hành<br>B. Ngô Quyền<br>D. Trần Hưng Đạo<br></td></tr></tbody>
+                </table>
+            <!-- Phân trang dữ liệu -->
+            <div class="row" id="pagination"><input type="hidden" name="_currentPage" id="_currentPage" value="1">
+<div class="col-sm-3">
+    <div class="dataTables_info"><span class="page-link">Danh sách có 3/ 3 Hồ sơ</span></div>
+</div>
+<div class="col-sm-6">
+    <div class="main_paginate">
+    </div>
+</div>
+<div class="col-sm-3">
+    <div class="left_paginate">
+        <div class="col-sm-6">
+            <span class="page-link">Hiển thị</span>
+        </div>
+        <div class="col-sm-6">
+            <select id="cbo_nuber_record_page" class="col-sm-1 form-control input-sm" name="cbo_nuber_record_page">
+                <option id="15" name="15" value="15">15</option>
+                <option id="50" name="50" value="50">50</option>
+                <option id="100" name="100" value="100">100</option>
+            </select>
+        </div>
+    </div>
+</div></div>
+        </div>
+    </div>
+</section>
+</form>
+<!-- Hien thi modal -->
+<div class="modal fade in" id="addQuestionModal" role="dialog" data-backdrop="static" data-keyboard="false" style="display: block; padding-right: 4px;"><form id="frmAddQuestion" role="form" action="http://efy.core/system/questions" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="_token" value="jZA4281PIA098IwXA3K3Ww2ucWjToE4jPwdYVMwz">
+<input class="form-control" name="id" type="hidden" value="">
+<div class="modal-dialog modal-lg full-modal">
+	  <!-- Modal content-->
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal">×</button>
+		  		  	<h4 class="modal-title">Thêm câu hỏi</h4>
+		  		</div>
+		<div class="modal-body">
+			<div class="main-tab">
+		    	<!-- Tab panes -->
+		        <!-- Tab panes -->
+		    		<!-- Thong tin co ban cua nguoi dung -->
+			        <div role="tabpanel" class="tab-pane active" id="infor">
+
+				    	<div class="row form-group">
+				    		<label class="col-md-2 control-label required">Mã câu hỏi:</label>
+				    		<div class="col-md-4">
+				    							    				<input class="form-control input-md" type="text" id="msv" name="msv" value="">
+				    							    		</div>
+				    	</div>
+				    	<div class="row form-group">
+				    		<label class="col-md-2 control-label required">Nội dung câu hỏi:</label>
+				    		<div class="col-md-4">
+				    							    				<textarea class="form-control input-md" type="text" id="name" name="name" value=""></textarea>
+				    							    		</div>
+				    	</div>
+
+				    	<div class="row form-group">
+				    		<label class="col-md-2 control-label required">Tên đăng nhập:</label>
+				    		<div class="col-md-3">
+				    							    				<input class="form-control input-md" type="text" id="username" name="username" value="">
+				    							    		</div>
+				    		<div class="col-md-1">
+				    		</div>
+				    		<label class="col-md-1 control-label required">Ngày sinh:</label>
+				    		<div class="col-md-3">
+				    							    				<input class="form-control input-md" type="date" id="birthday" name="birthday" value="">
+				    							    		</div>
+				    	</div>
+
+				</div>
+			</div>
+		</div>
+	<div class="modal-footer">
+		<button id="btn_save" class="btn btn-primary btn-flat" type="button" style="display: none;"><i class="fa fa-save"> Lưu</i></button>
+		<button id="btn_update" class="btn btn-primary btn-flat" type="button"><i class="fa fa-save"> Ghi</i></button>
+		<button id="btn_save_update" class="btn btn-primary btn-flat" type="button"><i class="fa fa-plus"> Ghi và thêm mới</i></button>
+		<button type="input" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"> Thoát</i></button>
+	 </div>
+  </div>
+</div>
+</form>
+<style>
+.radio-container label.error{
+	float: right;
+}
+</style>
+<script>
+	function checkallper(obj, name) {
+        if (obj.checked) {
+            $('input[name="' + name + '"]').prop('checked', true);
+        } else {
+            $('input[name="' + name + '"]').prop('checked', false);
+        }
+    }
+</script></div>
+
+<script type="text/javascript">
+    var baseUrl = 'http://efy.core/system';
+    var Js_Question = new Js_Question(baseUrl,'questions','question');
+    jQuery(document).ready(function($) {
+        Js_Question.loadIndex();
+})
+</script>
+<style>
+    label.title_info {
+        /* color: #973226;
+        color: rgb(0, 65, 104); */
+        font-weight: 600 !important;
+    }
+</style>
+        </div><div class="nanobar" style="position: fixed;"><div class="bar"></div></div>
+        <!--<footer class="main-footer">
+   <div class="container-fluid">
+        <p class="copyright-text">© CÔNG TY CỔ PHẦN CÔNG NGHỆ TIN HỌC EFY VIỆT NAM</p>
+
+        <p style="margin-bottom: 0" class="hidden-xs">Tel: <span class="color-yellow">04.62872290</span> - Fax: <span class="color-yellow">04.62872315</span> - Email: <span class="color-yellow">sale@efy.com.vn</span> - Website: <span><a target="_blank" href="http://www.efy.com.vn" class="color-yellow">http://www.efy.com.vn</a></span></p>
+
+        <p style="margin-bottom: 0" class="hidden-xs">Tầng 9 tòa nhà Sannam, số 78 phố Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, Hà Nội
+        </p>
+    </div>
+  </footer>-->
+    
+ 
+<div class="modal-backdrop fade in"></div></body></html>

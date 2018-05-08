@@ -20,12 +20,12 @@ class AppServiceProvider extends ServiceProvider
         
             view()->composer('header',function($view){
             if(Auth::check()){
-                if(Auth::user()->role == 1){
-                    $thongtinkhambenh = Thongtinkhambenh::where('trangthai', 2)->where('id_nguoigui', Auth::user()->id)->get();
+                if(Auth::user()->role == 2){
+                    $thongtinkhambenh = Thongtinkhambenh::where('trangthai', 2)->where('id_bacsi', Auth::user()->id)->get();
                     $count = count($thongtinkhambenh);  
                 }
-                if(Auth::user()->role == 2){
-                    $thongtinkhambenh = Thongtinkhambenh::where('trangthai','<>', 2)->where('id_bacsi', Auth::user()->id)->get();
+                if(Auth::user()->role == 1){
+                    $thongtinkhambenh = Thongtinkhambenh::where('trangthai','<>', 2)->where('id_nguoigui', Auth::user()->id)->get();
                     $count = count($thongtinkhambenh); 
                 } 
             }

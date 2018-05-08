@@ -31,7 +31,13 @@
 											<a href="{{route('datlich', $bs->id)}}"><img src="{{$bs->avatar}}" alt="" width="270px" height="320px"></a>
 										</div>
 										<div class="single-item-body">
-											<a href="{{route('datlich', $bs->id)}}"><p class="single-item-title" style="font-size: 18px;">bác sĩ <b>{{$bs->hoten}}</b></p></a>
+											<a href="{{route('datlich', $bs->id)}}"></a><p class="single-item-title" style="font-size: 18px;"><i class="fa fa-graduation-cap" style="color: black"></i>Bác sĩ <b style="color: #00a2a2">{{$bs->hoten}}</b></p>
+										</div>
+										<div class="single-item-body" style="margin-top: 10px;">
+											<p class="single-item-title" style="font-size: 18px;"><i class="fa fa-stethoscope" style="color: black"></i>Khoa: <b style="color: #00a2a2">{{$bs->bacsi->khoalamviec}}</b></p>
+										</div>
+										<div class="single-item-body" style="margin-top: 10px;">
+											<p class="single-item-title" style="font-size: 18px;"><i class="fa fa-hospital-o" style="color: black"></i>Nơi công tác: <b style="color: #00a2a2">{{$bs->bacsi->diachi}}</b></p>
 										</div>
 										<div class="single-item-caption">
 											<a class="btn btn-primary" href="{{route('datlich', $bs->id)}}">Đặt lịch hẹn ngay <i class="fa fa-chevron-right"></i></a>

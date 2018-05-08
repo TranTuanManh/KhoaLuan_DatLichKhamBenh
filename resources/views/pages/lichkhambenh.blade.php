@@ -12,7 +12,11 @@
 
 @section('content1')
 @if(Auth::user()->role == 2)
+@if($count==0)
+	<div class="container contain" style="height: 75vh">
+@else
 	<div class="container contain">
+@endif
 		@foreach($thongtinkhambenh as $thongtin)
 	    <div class="row">
 	    	@if($thongtin->trangthai == 2)
@@ -46,6 +50,8 @@
 										buổi chiều
 									@endif
 								ngày {{date('d-m-Y', strtotime($thongtin->ngayhen))}}</b><br><br>
+								Số điện thoại liên hệ: <b>{{$thongtin->dienthoai}}</b><br><br>
+								Địa chỉ email: <b>{{$thongtin->email}}</b><br><br>
 								Lý do: <b>{{$thongtin->lido}}</b>
 							</span><br>
 							@if($thongtin->trangthai == 2)					
@@ -73,7 +79,11 @@
 		<div class="row">{{$thongtinkhambenh->links()}}</div>
 	</div>
 @else
+@if($count==0)
+	<div class="container contain" style="height: 75vh">
+@else
 	<div class="container contain">
+@endif
 		@foreach($thongtinkhambenh as $thongtin)
 	    <div class="row">
 	    	@if($thongtin->trangthai == 2)

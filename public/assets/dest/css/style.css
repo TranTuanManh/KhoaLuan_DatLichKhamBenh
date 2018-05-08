@@ -61,7 +61,7 @@ height:100%;
 }
 
 body {
-font:13px/20px "Open Sans",sans-serif;
+font:18px/20px "Open Sans",sans-serif;
 color:black;
 font-weight:300;
 
@@ -817,9 +817,9 @@ padding:12px
 margin-bottom:10px
 }
 
-input[type="checkbox"] {
+/*input[type="checkbox"] {
 display:none
-}
+}*/
 
 input[type="checkbox"]+label {
 position:relative;

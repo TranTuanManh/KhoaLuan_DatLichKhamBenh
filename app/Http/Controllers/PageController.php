@@ -15,6 +15,7 @@ use App\Tintuc;
 use App\Binhluan;
 use Hash;
 use Auth;
+use Carbon\Carbon;
 
 class PageController extends Controller
 {
@@ -22,6 +23,124 @@ class PageController extends Controller
         $tintuc = Tintuc::orderBy('created_at', 'DESC')->paginate(4);
         $bacsi = User::where('role', 2)->paginate(4);
     	return view('pages.trangchu', compact('tintuc', 'bacsi'));
+    }
+
+    public function loadList(Request $request){
+        $thongtinkhambenh  = new Thongtinkhambenh();
+        $currentPage = $request->currentPage;
+        $perPage = $request->perPage;
+        $search = $request->search;
+        $params = array(
+                'searchString' => $request->search_string,
+                'find_ngayhen' => $request->find_ngayhen,
+                'find_trangthai' => $request->find_trangthai,
+                'currentPage'  => $request->currentPage,
+                'perPage'      => $request->perPage,
+            );
+        $id_bacsi = Auth::user()->id;
+        $objResult = $thongtinkhambenh->_getAll($params, $id_bacsi);
+        $arrResult = $objResult->toArray();
+        $data = $arrResult['data'];
+        if($data) {
+            for($i = 0; $i < count($data); $i++) {
+                if($data[$i]['trangthai'] == 1){
+                    $data[$i]['trangthai'] = "Đã chấp nhận";
+                }
+                else if($data[$i]['trangthai'] == 2){
+                    $data[$i]['trangthai'] = "Đang chờ xử lí";
+                }
+                else{
+                    $data[$i]['trangthai'] = "Đã hủy";
+                }
+
+                if($data[$i]['thoigian'] == 1){
+                    $data[$i]['thoigian'] = "Buổi sáng";
+                }
+                else{
+                    $data[$i]['thoigian'] = "Buổi chiều";
+                }
+                $data[$i]['ngayhen'] = date('d/m/Y', strtotime($data[$i]['ngayhen']));
+            }
+        }
+        return \Response::JSON(array(
+               'Dataloadlist'  => $data,
+               'pagination' => (string) $objResult->links('quanlylichkham.pagination'),
+               'perPage' => $perPage,
+        ));
+    }
+
+    public function add(Request $request){
+        $data['arrLichKham'] = null;
+        return view('quanlylichkham.add', $data);
+    }
+
+    public function edit(Request $request){
+        $itemid = $request->input('itemId');
+        $thongtinkhambenh = Thongtinkhambenh::find($itemid);
+        $arrLichKham['hotenbenhnhan']  = $thongtinkhambenh->hotenbenhnhan;
+        $arrLichKham['gioitinh']  = $thongtinkhambenh->gioitinh;
+        $arrLichKham['email']  = $thongtinkhambenh->email;
+        $arrLichKham['dienthoai']  = $thongtinkhambenh->dienthoai;
+        $arrLichKham['lido']  = $thongtinkhambenh->lido;
+        $arrLichKham['diachi']  = $thongtinkhambenh->diachi;
+        $arrLichKham['thoigian']  = $thongtinkhambenh->thoigian;
+        $arrLichKham['ngayhen']  = $thongtinkhambenh->ngayhen;
+        $arrLichKham['trangthai']  = $thongtinkhambenh->trangthai;
+        $data['arrLichKham'] = $arrLichKham;
+        return view('quanlylichkham.add', $data);
+    }
+
+    public function lichkham_add(Request $request){
+        $thongtinkhambenh = new Thongtinkhambenh();
+        $id_bacsi = Auth::user()->id;
+        $thongtinkhambenh->hotenbenhnhan = $request->hotenbenhnhan;
+        $thongtinkhambenh->id_bacsi = $id_bacsi;
+        $thongtinkhambenh->gioitinh = $request->gioitinh;
+        if($request->email){
+            $thongtinkhambenh->email = $request->email;
+        }
+        else{
+            $thongtinkhambenh->email = null;
+        }
+        $thongtinkhambenh->dienthoai = $request->dienthoai;
+        $thongtinkhambenh->lido = $request->lido;
+        $thongtinkhambenh->diachi = $request->diachi;
+        $thongtinkhambenh->thoigian = $request->thoigian;
+        $thongtinkhambenh->ngayhen = $request->ngayhen;
+        $thongtinkhambenh->trangthai = $request->trangthai;
+        $thongtinkhambenh->save();
+        return array('success' => true, 'message' => 'Cập nhật thành công');
+    }
+
+    public function update(Request $request){
+        $id = $request->input('itemId');
+        $thongtinkhambenh = Thongtinkhambenh::find($id);
+        $id_bacsi = Auth::user()->id;
+        $thongtinkhambenh->id_bacsi = $id_bacsi;
+        $thongtinkhambenh->hotenbenhnhan = $request->hotenbenhnhan;
+        $thongtinkhambenh->gioitinh = $request->gioitinh;
+        if($request->email){
+            $thongtinkhambenh->email = $request->email;
+        }
+        else{
+            $thongtinkhambenh->email = null;
+        }
+        $thongtinkhambenh->dienthoai = $request->dienthoai;
+        $thongtinkhambenh->lido = $request->lido;
+        $thongtinkhambenh->diachi = $request->diachi;
+        $thongtinkhambenh->thoigian = $request->thoigian;
+        $thongtinkhambenh->ngayhen = $request->ngayhen;
+        $thongtinkhambenh->trangthai = $request->trangthai;
+        $thongtinkhambenh->save();
+        return array('success' => true, 'message' => 'Cập nhật thành công');
+    }
+
+    public function delete(Request $request){
+        $thongtinkhambenh = new Thongtinkhambenh;
+        $listitem = $request->input('listitem');
+        $arrResult = $thongtinkhambenh->_delete($listitem);
+
+        return \Response::JSON($arrResult);
     }
 
     public function getDangNhap(){
@@ -95,12 +214,23 @@ class PageController extends Controller
     public function getHoiBacSi(){
         $chude = Chude::all();
         $baiviet = Baiviet::orderBy('created_at', 'DESC')->paginate(8);
-        $bacsi = User::where('role', 2)->get(); 
+        $bacsi = User::where('role', 2)->get();
         $binhluan = Binhluan::orderBy('created_at', 'ASC')->get();
     	return view('pages.hoibacsi', compact('chude', 'bacsi', 'baiviet', 'binhluan'));
     }
 
     public function postHoiBacSi(Request $req){
+        $this->validate($req,
+            [
+                'id_nguoiduochoi'=>'required',
+                'noidung'=>'required',
+                'id_chude'=>'required'
+            ],
+            [
+                'id_nguoiduochoi'=>'Hãy chọn người để hỏi',
+                'noidung.required'=>'Nội dung không được để trống',
+                'id_chude.required'=>'Hãy chọn chủ đề để hỏi',
+            ]);
         $nguoihoi = Auth::user()->id;
         $baiviet = new Baiviet();
         $baiviet->id_nguoihoi = $nguoihoi;
@@ -109,8 +239,8 @@ class PageController extends Controller
         $baiviet->id_chude = $req->id_chude;
 
         $file = $req->file;
-        if($file){  
-            $filename = $file->getClientOriginalName();          
+        if($file){
+            $filename = $file->getClientOriginalName();
             $req->file->move(base_path('public/images/baiviet'), $filename);
             $baiviet->url_anh = 'images/baiviet/'.$filename;
         }
@@ -189,7 +319,15 @@ class PageController extends Controller
     public function getTinTuc(){
         $chude = Chude::all();
         $tintuc = Tintuc::orderBy('created_at', 'DESC')->paginate(10);
-        return view('pages.tintuc', compact('chude', 'tintuc'));
+        $count = count($tintuc);
+        return view('pages.tintuc', compact('chude', 'tintuc', 'count'));
+    }
+
+    public function getPhanLoaiTinTuc($id_chude){
+        $chude = Chude::all();
+        $tintuc = Tintuc::orderBy('created_at', 'DESC')->where('id_chude', $id_chude)->paginate(10);
+        $count = count($tintuc);
+        return view('pages.tintuc', compact('chude', 'tintuc', 'count'));
     }
 
     public function getTraCuu(){
@@ -200,6 +338,10 @@ class PageController extends Controller
     public function getDatLichKham(){
         $bacsi = User::where('role', 2)->get();
         return view('pages.datlichkham', compact('bacsi'));
+    }
+
+    public function getQuanLyLichKham(){
+        return view('quanlylichkham.quanlylichkham');
     }
 
     public function getDatLich($id){
@@ -220,7 +362,13 @@ class PageController extends Controller
         $thongtinkhambenh->ngayhen = $req->ngayhen;
         $thongtinkhambenh->id_bacsi = $req->id_bacsi;
         $thongtinkhambenh->lido = $req->lido;
-        $thongtinkhambenh->id_nguoigui = Auth::user()->id;
+        if(Auth::check()){
+            $thongtinkhambenh->id_nguoigui = Auth::user()->id;
+        }
+        else{
+            $thongtinkhambenh->id_nguoigui = null;
+        }
+
         $thongtinkhambenh->save();
         return redirect()->back()->with('thanhcong', 'Đặt lịch khám bệnh thành công');
     }
@@ -237,7 +385,12 @@ class PageController extends Controller
         $thongtinkhambenh->ngayhen = $req->ngayhen;
         $thongtinkhambenh->id_bacsi = $req->id_bacsi;
         $thongtinkhambenh->lido = $req->lido;
-        $thongtinkhambenh->id_nguoigui = Auth::user()->id;
+        if(Auth::check()){
+            $thongtinkhambenh->id_nguoigui = Auth::user()->id;
+        }
+        else{
+            $thongtinkhambenh->id_nguoigui = null;
+        }
         $thongtinkhambenh->save();
         return redirect()->back()->with('thanhcong', 'Đặt lịch khám bệnh thành công');
     }
@@ -245,6 +398,8 @@ class PageController extends Controller
     public function getAjax(){
         $bacsi_id = Input::get('id_bacsi');
         $bacsi = Bacsi::where('id_user', $bacsi_id)->first();
+        $avatar = User::where('id', $bacsi_id)->first()->avatar;
+        $bacsi['avatar'] = $avatar;
         return Response::json($bacsi);
     }
 
@@ -269,7 +424,7 @@ class PageController extends Controller
                 <div class="row">
                         <div class="col-md-1">
                             <img src="'. $comment->nguoibinhluan->avatar .'" width="40px">
-                        </div>              
+                        </div>
                         <div class="row name">
                             <a href="#" style="margin-left: -10px"><b>'. $comment->nguoibinhluan->hoten .'</b></a><br><br>
                             <div class="col-md-11 commenting">'.
@@ -286,11 +441,13 @@ class PageController extends Controller
     public function lichkhambenh(){
         if(Auth::user()->role == 1){
             $thongtinkhambenh = Thongtinkhambenh::orderBy('created_at', 'DESC')->where('id_nguoigui', Auth::user()->id)->paginate(10);
+            $count = count($thongtinkhambenh); 
         }
         if(Auth::user()->role == 2){
             $thongtinkhambenh = Thongtinkhambenh::orderBy('created_at', 'DESC')->where('id_bacsi', Auth::user()->id)->paginate(10);
+            $count = count($thongtinkhambenh); 
         }
-        return view('pages.lichkhambenh', compact('thongtinkhambenh'));
+        return view('pages.lichkhambenh', compact('thongtinkhambenh', 'count'));
     }
 
     public function chapnhan($id){
@@ -307,28 +464,34 @@ class PageController extends Controller
         if(Auth::user()->role == 1){
             if($id == 1){
                 $thongtinkhambenh = Thongtinkhambenh::orderBy('created_at', 'DESC')->where('trangthai', 1)->where('id_nguoigui', Auth::user()->id)->paginate(10);
+                $count = count($thongtinkhambenh);  
             }
 
             else if($id == 2){
                 $thongtinkhambenh = Thongtinkhambenh::orderBy('created_at', 'DESC')->where('trangthai', 2)->where('id_nguoigui', Auth::user()->id)->paginate(10);
+                $count = count($thongtinkhambenh);  
             }
             else{
                 $thongtinkhambenh = Thongtinkhambenh::orderBy('created_at', 'DESC')->where('trangthai', 3)->where('id_nguoigui', Auth::user()->id)->paginate(10);
+                $count = count($thongtinkhambenh); 
             }
             
         }
         if(Auth::user()->role == 2){
             if($id == 1){
                 $thongtinkhambenh = Thongtinkhambenh::orderBy('created_at', 'DESC')->where('trangthai', 1)->where('id_bacsi', Auth::user()->id)->paginate(10);
+                $count = count($thongtinkhambenh); 
             }
 
             else if($id == 2){
                 $thongtinkhambenh = Thongtinkhambenh::orderBy('created_at', 'DESC')->where('trangthai', 2)->where('id_bacsi', Auth::user()->id)->paginate(10);
+                $count = count($thongtinkhambenh); 
             }
             else{
                 $thongtinkhambenh = Thongtinkhambenh::orderBy('created_at', 'DESC')->where('trangthai', 3)->where('id_bacsi', Auth::user()->id)->paginate(10);
+                $count = count($thongtinkhambenh); 
             }
         }
-        return view('pages.lichkhambenh', compact('thongtinkhambenh'));
+        return view('pages.lichkhambenh', compact('thongtinkhambenh', 'count'));
     }
 }

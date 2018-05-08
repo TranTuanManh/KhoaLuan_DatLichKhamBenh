@@ -13,7 +13,7 @@
 	@include('headerLogin')
 	<div class="back-ground">
 		<div class="form-area">
-			<h3 class="form-title">Hệ thống đặt lịch khám bệnh</h3>
+			<h3 class="form-title">Hệ thống quản lí lịch khám bác sĩ</h3>
 			<form action="{{route('dangnhap')}}" method="post">
 			<input type="hidden" name="_token" value="{{csrf_token()}}"> 
 				@if(count($errors)>0)
