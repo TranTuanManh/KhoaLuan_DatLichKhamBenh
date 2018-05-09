@@ -10,8 +10,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="assets/dest/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/dest/css/font-awesome.min.css">
-	<link rel="stylesheet" title="style" href="assets/dest/css/style.css">
 	<link rel="stylesheet" title="style" href="assets/dest/css/app.css">
+	<link rel="stylesheet" title="style" href="css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="assets/dest/rs-plugin/css/settings.css">
+	<link rel="stylesheet" title="style" href="assets/dest/css/style.css">
 </head>
 <body>
 
@@ -21,14 +23,6 @@
 	</div>
 
 	@include('footer')
-	<div class="copyright">
-		<div class="container">
-			<p class="pull-left"></p>
-			<p class="pull-right pay-options">
-			</p>
-			<div class="clearfix"></div>
-		</div> <!-- .container -->
-	</div> <!-- .copyright -->
 
 
 	<!-- include js files -->
@@ -36,6 +30,11 @@
 	<script src="assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="assets/dest/js/bootstrap.min.js"></script>
 	<script src="js/chosen.jquery.min.js"></script>
+	<script src="js/bootstrap-select.min.js"></script>
+	<script src="assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
+	<script src="assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+	<script src="assets/dest/rs-plugin/js/jquery.themepunch.revolution.js"></script>
+	<script src="assets/dest/js/wow.min.js"></script>
 	<script src="assets/dest/js/custom2.js"></script>
 	<script>
 		$.ajaxSetup({

@@ -23,26 +23,26 @@
                         </div>
                       </div>
                     </div>
-                   
+
                     <div class="column">
-                      <div class="col-md-6" style="margin-left: 150px; font-size: 20px;">
-                        <div class="row" style="margin-bottom: 50px"><b>Họ và tên</b>: <i>{{Auth::user()->hoten}}</i></div>
-                        <div class="row" style="margin-bottom: 50px"><b>Giới tính</b>: <i>
+                      <div class="col-md-6" style="margin-left: 50px; font-size: 20px;">
+                        <div class="row" style="margin-bottom: 35px"><b>Họ và tên</b>: <i>{{Auth::user()->hoten}}</i></div>
+                        <div class="row" style="margin-bottom: 35px"><b>Giới tính</b>: <i>
                           @if(Auth::user()->gioitinh)
                             {{Auth::user()->gioitinh}}
                           @else
                             Chưa cung cấp
                           @endif
                         </i></div>
-                        <div class="row" style="margin-bottom: 50px"><b>Email</b>: <i>{{Auth::user()->email}}</i></div>
-                        <div class="row" style="margin-bottom: 50px"><b>Ngày sinh</b>: <i>
+                        <div class="row" style="margin-bottom: 35px"><b>Email</b>: <i>{{Auth::user()->email}}</i></div>
+                        <div class="row" style="margin-bottom: 35px"><b>Ngày sinh</b>: <i>
                           @if(Auth::user()->ngaysinh)
                             {{date('d-m-Y', strtotime(Auth::user()->ngaysinh))}}
                           @else
                             Chưa cung cấp
                           @endif
                         </i></div>
-                        <div class="row" style="margin-bottom: 50px"><b>Số điện thoại</b>: <i>
+                        <div class="row" style="margin-bottom: 35px"><b>Số điện thoại</b>: <i>
                           @if(Auth::user()->dienthoai)
                             {{Auth::user()->dienthoai}}
                           @else
@@ -50,14 +50,28 @@
                           @endif
                         </i></div>
                       @if(Auth::user()->role == 2)
-                        <div class="row" style="margin-bottom: 50px"><b>Địa chỉ làm việc</b>: <i>
+                        <div class="row" style="margin-bottom: 35px"><b>Học vị</b>: <i>
+                          @if(Auth::user()->bacsi->hocvi)
+                            {{Auth::user()->bacsi->hocvi}}
+                          @else
+                            Chưa cung cấp
+                          @endif
+                        </i></div>
+                        <div class="row" style="margin-bottom: 35px"><b>Kinh nghiệm</b>: <i style="line-height: 1.6;">
+                          @if(Auth::user()->bacsi->kinhnghiem)
+                            {{Auth::user()->bacsi->kinhnghiem}}
+                          @else
+                            Chưa cung cấp
+                          @endif
+                        </i></div>
+                        <div class="row" style="margin-bottom: 35px"><b>Địa chỉ làm việc</b>: <i style="line-height: 1.6;">
                           @if(Auth::user()->bacsi->diachi)
                             {{Auth::user()->bacsi->diachi}}
                           @else
                             Chưa cung cấp
                           @endif
                         </i></div>
-                        <div class="row" style="margin-bottom: 50px"><b>Khoa làm việc</b>: <i>
+                        <div class="row" style="margin-bottom: 35px"><b>Chuyên khoa</b>: <i>
                           @if(Auth::user()->bacsi->khoalamviec)
                             {{Auth::user()->bacsi->khoalamviec}}
                           @else
@@ -65,14 +79,14 @@
                           @endif
                         </i></div>
                       @endif
-                        <div class="row" style="margin-bottom: 50px"><b>Tỉnh Thành</b>: <i>
+                        <div class="row" style="margin-bottom: 35px"><b>Tỉnh Thành</b>: <i>
                           @if(Auth::user()->tinh)
                             {{$usertinh->ten}}
                           @else
                             Chưa cung cấp
                           @endif
                         </i></div>
-                        <div class="row" style="margin-bottom: 50px"><b>Loại tài khoản</b>:
+                        <div class="row" style="margin-bottom: 35px"><b>Loại tài khoản</b>:
                         @if(Auth::user()->role == 1)
                           <i>Bệnh nhân</i>
                         @else
@@ -138,9 +152,21 @@
           </div>
           @if(Auth::user()->role == 2)
             <div class="form-group">
+              <label for="inputEmail3" class="col-sm-3 control-label">Học vị</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="hocvi" value="{{Auth::user()->bacsi->hocvi}}" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-3 control-label">Kinh nghiệm</label>
+              <div class="col-sm-9">
+                <textarea type="text" class="form-control" name="kinhnghiem" rows="3">{{Auth::user()->bacsi->kinhnghiem}}</textarea>
+              </div>
+            </div>
+            <div class="form-group">
               <label for="inputEmail3" class="col-sm-3 control-label">Địa chỉ</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="diachi" value="{{Auth::user()->bacsi->diachi}}" />
+                <textarea type="text" class="form-control" name="diachi" rows="3">{{Auth::user()->bacsi->diachi}}</textarea>
               </div>
             </div>
             <div class="form-group">
@@ -154,7 +180,7 @@
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-3 control-label">Tỉnh Thành</label>
             <div class="col-sm-9">
-              <select class="form-control" name="tinh">
+              <select class="form-control selectpicker" name="tinh" data-live-search="true" data-dropup-auto="false">
                 @if(Auth::user()->tinh)
                   <option value="{{$usertinh->id}}">{{$usertinh->ten}}</option>
                 @endif

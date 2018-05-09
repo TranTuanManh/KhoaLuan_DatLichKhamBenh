@@ -9,7 +9,28 @@
 @endsection
 
 @section('content')
-</div>
+<div class="fullwidthbanner-container">
+					<div class="fullwidthbanner">
+						<div class="bannercontainer" >
+					    <div class="banner" >
+								<ul>
+								@foreach($slide as $sl)
+									<!-- THE FIRST SLIDE -->
+									<li data-transition="boxfade" data-slotamount="20" class="active-revslide" style="width: 100%; height: 100%; overflow: hidden; z-index: 18; visibility: hidden; opacity: 0;">
+						            	<div class="slotholder" style="width:100%;height:100%;" data-duration="undefined" data-zoomstart="undefined" data-zoomend="undefined" data-rotationstart="undefined" data-rotationend="undefined" data-ease="undefined" data-bgpositionend="undefined" data-bgposition="undefined" data-kenburns="undefined" data-easeme="undefined" data-bgfit="undefined" data-bgfitend="undefined" data-owidth="undefined" data-oheight="undefined">
+											<div class="tp-bgimg defaultimg" data-lazyload="undefined" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat" data-lazydone="undefined" src="images/slide/{{$sl->image}}" data-src="images/slide/{{$sl->image}}" style="background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-image: url('images/slide/{{$sl->image}}'); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 1; visibility: inherit;">
+											</div>
+										</div>
+									</li>
+								@endforeach
+								</ul>
+							</div>
+						</div>
+
+						<div class="tp-bannertimer"></div>
+					</div>
+    </div>
+
 	<div class="container">
 		<div id="content" class="space-top-none">
 			<div class="main-content">
@@ -40,7 +61,7 @@
 											<p class="single-item-title" style="font-size: 18px;"><i class="fa fa-hospital-o" style="color: black"></i>Nơi công tác: <b style="color: #00a2a2">{{$bs->bacsi->diachi}}</b></p>
 										</div>
 										<div class="single-item-caption">
-											<a class="btn btn-primary" href="{{route('datlich', $bs->id)}}">Đặt lịch hẹn ngay <i class="fa fa-chevron-right"></i></a>
+											<a style="font-size: 18px" class="btn btn-primary" href="{{route('datlich', $bs->id)}}">Đặt lịch hẹn ngay <i class="fa fa-chevron-right"></i></a>
 										</div>
 
 									</div>
@@ -65,7 +86,7 @@
 											<a href="product.html"><img src="assets/dest/images/products/1.jpg" alt=""></a>
 										</div>
 										<div class="single-item-body">
-											<a href="product.html"><p class="single-item-title" style="font-size: 16px">Kem dưỡng ẩm Hada Labo chính hãng giá bao nhiêu?</p></a>
+											<a href="product.html"><p class="single-item-title" style="font-size: 16px">Đang cập nhât...</p></a>
 										</div>
 
 									</div>
@@ -76,7 +97,7 @@
 											<a href="product.html"><img src="assets/dest/images/products/1.jpg" alt=""></a>
 										</div>
 										<div class="single-item-body">
-											<a href="product.html"><p class="single-item-title" style="font-size: 16px">Kem dưỡng ẩm Hada Labo chính hãng giá bao nhiêu?</p></a>
+											<a href="product.html"><p class="single-item-title" style="font-size: 16px">Đang cập nhât...</p></a>
 										</div>
 
 									</div>
@@ -87,7 +108,7 @@
 											<a href="product.html"><img src="assets/dest/images/products/1.jpg" alt=""></a>
 										</div>
 										<div class="single-item-body">
-											<a href="product.html"><p class="single-item-title" style="font-size: 16px">Kem dưỡng ẩm Hada Labo chính hãng giá bao nhiêu?</p></a>
+											<a href="product.html"><p class="single-item-title" style="font-size: 16px">Đang cập nhât...</p></a>
 										</div>
 
 									</div>
@@ -98,7 +119,7 @@
 											<a href="product.html"><img src="assets/dest/images/products/1.jpg" alt=""></a>
 										</div>
 										<div class="single-item-body">
-											<a href="product.html"><p class="single-item-title" style="font-size: 16px">Kem dưỡng ẩm Hada Labo chính hãng giá bao nhiêu?</p></a>
+											<a href="product.html"><p class="single-item-title" style="font-size: 16px">Đang cập nhât...</p></a>
 										</div>
 
 									</div>
@@ -130,12 +151,12 @@
 								</div>
 							@endforeach
 							</div>
-						</div> <!-- .beta-products-list -->
+						</div>
 					</div>
-				</div> <!-- end section with sidebar and main content -->
+				</div>
 
 
 			</div> <!-- .main-content -->
 		</div> <!-- #content -->
-	</div> <!-- .container -->assets/dest/
+	</div> 
 @endsection

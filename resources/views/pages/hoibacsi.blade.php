@@ -56,18 +56,26 @@
 					<form action="{{route('hoibacsi')}}" id="submit_form" method="post" enctype="multipart/form-data"> 
 						<input type="hidden" name="_token" value="{{csrf_token()}}"> 
 							<textarea style="height: 100px" placeholder="Bạn muốn hỏi bác sĩ điều gì?" name="noidung" wrap="physical"></textarea>
-							<select style="width: 20%; height: 30px; font-size: 15px" name="id_chude">
+							<select class="selectpicker" name="id_chude">
 								<option>Chọn chủ đề</option>
 								@foreach($chude as $cd)
 									<option value="{{$cd->id}}" style="color: #4267b2">{{$cd->tenchude}}</option>
 								@endforeach
 							</select>
 
-							<select class="chzn-select" style="width: 20%; height: 30px; font-size: 15px" name="id_nguoiduochoi">
+							<select class="selectpicker" style=" font-size: 18px" name="id_nguoiduochoi" data-live-search="true">
 								<option>Chọn bác sĩ để hỏi</option>
-								@foreach($bacsi as $bs)
-									<option value="{{$bs->id}}" style="color: #4267b2">{{$bs->hoten}}</option>
-								@endforeach
+									@foreach($bacsi as $bs => $array)
+										<optgroup label="Khoa {{$bs}}">
+										@foreach($array as $arr)
+											@if($arr->hocvi)
+												<option value="{{$arr->id_user}}">{{$arr->hocvi}} {{$arr->bacsi->hoten}}</option>
+											@else
+												<option value="{{$arr->id_user}}">Bác sĩ {{$arr->bacsi->hoten}}</option>
+											@endif
+										@endforeach
+										</optgroup>
+									@endforeach
 							</select>
 							<div id="image_preview">
 								<img src="" width="200px" id="image" name="image" style="margin-left: 0px; border: 1px solid #e1e3e6">
@@ -135,7 +143,7 @@
 						<div class="row">
 	                        <div class="col-md-1">
 	                            <img src="{{ $bl->nguoibinhluan->avatar }}" width="40px">
-	                        </div>              
+	                        </div>
 	                        <div class="row name">
 	                            <a href="#" style="margin-left: -10px"><b>{{$bl->nguoibinhluan->hoten }}</b></a><br><br>
 	                            <div class="col-md-11 commenting">

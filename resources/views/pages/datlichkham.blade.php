@@ -36,7 +36,7 @@
 							<input id="gender" type="radio" class="input-radio" name="gender" value="Nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
 							<input id="gender" type="radio" class="input-radio" name="gender" value="Nữ" style="width: 10%"><span>Nữ</span>
 						@endif
-										
+
 						</div><br>
 
 						<div class="form-block">	
@@ -85,10 +85,18 @@
 												<p class="font-large"><b style="font-size: 18px">Hẹn với:</b></p>
 											</div>
 											<div class="col-md-9">
-												<select class="form-control" id="thongtinbacsi" name="id_bacsi">
-													<option value="">Chọn bác sĩ</option>
-													@foreach($bacsi as $bs)
-														<option value="{{$bs->id}}">Bác sĩ {{$bs->hoten}}</option>
+												<select class="form-control selectpicker" id="thongtinbacsi" name="id_bacsi" data-live-search="true">
+													<option value="">  </option>
+													@foreach($bacsi as $bs => $array)
+													 	<optgroup label="Khoa {{$bs}}">
+														    @foreach($array as $arr)
+														    	@if($arr->hocvi)
+														    		<option value="{{$arr->id_user}}">{{$arr->hocvi}} {{$arr->bacsi->hoten}}</option>
+														    	@else
+														    		<option value="{{$arr->id_user}}">Bác sĩ {{$arr->bacsi->hoten}}</option>
+														    	@endif
+														   	@endforeach
+													  	</optgroup>
 													@endforeach
 												</select>
 											</div>
@@ -100,7 +108,7 @@
 												<p class="font-large"><b style="font-size: 18px">Thời gian:</b></p>
 											</div>
 											<div class="col-md-9">
-												<select class="form-control" name="time">
+												<select class="form-control selectpicker" name="time">
 													<option value="1">Buổi sáng</option>
 													<option value="2">Buổi chiều</option>
 												</select>

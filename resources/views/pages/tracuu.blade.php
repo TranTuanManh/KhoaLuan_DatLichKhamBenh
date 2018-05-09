@@ -9,13 +9,13 @@
 			<div class="col-xs-10 col-md-8 col-md-offset-2">
 				<div class="row">
 					<div class="col-xs-6 col-sm-4 text-center">
-						<a href="https://vicare.vn/danh-sach/bac-si/">
+						<a href="{{route('danhsachbacsi')}}">
 						<div class="bg-white grid-item">
 							<div class="item-content">
 								<i class="fa fa-user-md" aria-hidden="true"></i><br>
-								<span>1.300</span>
+								<span>{{$count}}</span>
 								<h4>Bác sĩ</h4>
-							</div>						
+							</div>
 						</div>
 						</a>
 					</div>
@@ -27,7 +27,7 @@
 								<i class="fa fa-hospital-o" aria-hidden="true"></i><br>
 								<span>200</span>
 								<h4>Cơ sở y tế</h4>
-							</div>						
+							</div>
 						</div>
 						</a>
 					</div>
@@ -39,7 +39,7 @@
 								<i class="fa fa-bed" aria-hidden="true"></i><br>
 								<span>563</span>
 								<h4>Các loại bệnh</h4>
-							</div>						
+							</div>
 						</div>
 						</a>
 					</div>

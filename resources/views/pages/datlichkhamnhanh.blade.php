@@ -39,7 +39,7 @@
 
 						</div><br>
 
-						<div class="form-block">	
+						<div class="form-block">
 							<label for="email">Email<span>*</span></label>
 						@if(Auth::check())
 							<input class="form-control" type="email" id="email" name="email" required value="{{Auth::user()->email}}">
@@ -56,7 +56,7 @@
 							<input class="form-control" type="text" id="address" name="address" placeholder="Nhập địa chỉ của bạn" required>
 						@endif
 						</div><br>
-						
+
 						<div class="form-block">
 							<label for="phone">Điện thoại<span>*</span></label>
 						@if(Auth::check())
@@ -84,10 +84,25 @@
 												<p class="font-large"><b style="font-size: 18px">Hẹn với:</b></p>
 											</div>
 											<div class="col-md-9">
-												<select class="form-control" id="thongtinbacsi" name="id_bacsi">
-													<option value="{{$currentbacsi->id}}">{{$currentbacsi->hoten}}</option>
-													@foreach($bacsi as $bs)
-														<option value="{{$bs->id}}">{{$bs->hoten}}</option>
+												<select class="form-control selectpicker" id="thongtinbacsi" name="id_bacsi" data-live-search="true">
+													@foreach($bacsi as $bs => $array)
+													 	<optgroup label="Khoa {{$bs}}">
+														    @foreach($array as $arr)
+														    @if($arr->id_user == $currentbacsi->id)
+														    	@if($arr->hocvi)
+														    		<option selected value="{{$arr->id_user}}">{{$arr->hocvi}} {{$arr->bacsi->hoten}}</option>
+														    	@else
+														    		<option selected value="{{$arr->id_user}}">Bác sĩ {{$arr->bacsi->hoten}}</option>
+														    	@endif
+														    @else
+														    	@if($arr->hocvi)
+														    		<option value="{{$arr->id_user}}">{{$arr->hocvi}} {{$arr->bacsi->hoten}}</option>
+														    	@else
+														    		<option value="{{$arr->id_user}}">Bác sĩ {{$arr->bacsi->hoten}}</option>
+														    	@endif
+														    @endif
+														   	@endforeach
+													  	</optgroup>
 													@endforeach
 												</select>
 											</div>
@@ -99,7 +114,7 @@
 												<p class="font-large"><b style="font-size: 18px">Thời gian:</b></p>
 											</div>
 											<div class="col-md-9">
-												<select class="form-control" name="time">
+												<select class="form-control selectpicker" name="time">
 													<option value="1">Buổi sáng</option>
 													<option value="2">Buổi chiều</option>
 												</select>
@@ -117,6 +132,11 @@
 											<div class="clearfix"></div>
 										</div>
 
+										<div class="your-order-item">
+											<div id="avatar-doctor" style="text-align: center">
+												<img src="{{$bacsiinfo->bacsi->avatar}}" width="150px">
+											</div>
+										</div>
 
 										<div class="your-order-item" style="background-color: #e1e3e6">
 											<div class="col-md-3">

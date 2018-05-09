@@ -32,18 +32,6 @@
 	                <div class="row form-group">
 	                    <div class="col-md-4">
 	                        <div class="row ">
-	                            <br><label class="control-label col-md-3">Hiển thị</label>
-	                            <div class="col-md-8 text-left">
-	                                <select id="find_hienthi" name="find_hienthi" class="form-control" message="" style="font-size: 18px; height: 37px; padding: 0px 10px">
-                                    	<option value="1" style="font-size: 18px">Dưới dạng danh sách</option>
-                                    	<option value="2" style="font-size: 18px">Dưới dạng bảng</option>
-                                	</select>
-	                            </div>
-	                        </div>
-	                    </div>
-
-	                    <div class="col-md-4">
-	                        <div class="row ">
 	                            <br><label class="control-label col-md-3">Ngày hẹn</label>
 	                            <div class="col-md-8 text-left">
 	                                <select id="find_ngayhen" name="find_ngayhen" class="form-control chzn-select" message="">

@@ -47,4 +47,5 @@ class User extends Authenticatable
     public function bacsi(){
         return $this->hasOne('App\Bacsi', 'id_user', 'id');
     }
+
 }

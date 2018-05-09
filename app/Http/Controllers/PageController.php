@@ -13,6 +13,7 @@ use App\Thongtinkhambenh;
 use App\Baiviet;
 use App\Tintuc;
 use App\Binhluan;
+use App\Slide;
 use Hash;
 use Auth;
 use Carbon\Carbon;
@@ -22,7 +23,8 @@ class PageController extends Controller
     public function getTrangChu(){
         $tintuc = Tintuc::orderBy('created_at', 'DESC')->paginate(4);
         $bacsi = User::where('role', 2)->paginate(4);
-    	return view('pages.trangchu', compact('tintuc', 'bacsi'));
+        $slide = Slide::all();
+    	return view('pages.trangchu', compact('tintuc', 'bacsi', 'slide'));
     }
 
     public function loadList(Request $request){
@@ -214,7 +216,7 @@ class PageController extends Controller
     public function getHoiBacSi(){
         $chude = Chude::all();
         $baiviet = Baiviet::orderBy('created_at', 'DESC')->paginate(8);
-        $bacsi = User::where('role', 2)->get();
+        $bacsi = Bacsi::all()->groupBy('khoalamviec');
         $binhluan = Binhluan::orderBy('created_at', 'ASC')->get();
     	return view('pages.hoibacsi', compact('chude', 'bacsi', 'baiviet', 'binhluan'));
     }
@@ -254,7 +256,7 @@ class PageController extends Controller
 
     public function getDangXuat(){
         Auth::logout();
-        return redirect()->route('gioithieu');
+        return redirect()->route('trangchu');
     }
 
     public function getThongTin(){
@@ -270,6 +272,8 @@ class PageController extends Controller
             if($bacsi){
                 $bacsi->diachi = $req->diachi;
                 $bacsi->khoalamviec = $req->khoalamviec;
+                $bacsi->hocvi = $req->hocvi;
+                $bacsi->kinhnghiem = $req->kinhnghiem;
             }
             else{
                 $bacsi = new Bacsi();
@@ -331,12 +335,14 @@ class PageController extends Controller
     }
 
     public function getTraCuu(){
+        $bacsi = Bacsi::all();
+        $count = count($bacsi);
         $tintuc = Tintuc::orderBy('created_at', 'DESC')->paginate(4);
-        return view('pages.tracuu', compact('tintuc'));
+        return view('pages.tracuu', compact('tintuc', 'count'));
     }
 
     public function getDatLichKham(){
-        $bacsi = User::where('role', 2)->get();
+        $bacsi = Bacsi::all()->groupBy('khoalamviec');
         return view('pages.datlichkham', compact('bacsi'));
     }
 
@@ -346,7 +352,7 @@ class PageController extends Controller
 
     public function getDatLich($id){
         $currentbacsi = User::find($id);
-        $bacsi = User::where('role', 2)->where('id', '<>', $id)->get();
+        $bacsi = Bacsi::all()->groupBy('khoalamviec')->where('id_user','<>', $id);
         $bacsiinfo = Bacsi::where('id_user', $id)->first();
         return view('pages.datlichkhamnhanh', compact('bacsi', 'currentbacsi', 'bacsiinfo'));
     }
@@ -475,7 +481,6 @@ class PageController extends Controller
                 $thongtinkhambenh = Thongtinkhambenh::orderBy('created_at', 'DESC')->where('trangthai', 3)->where('id_nguoigui', Auth::user()->id)->paginate(10);
                 $count = count($thongtinkhambenh); 
             }
-            
         }
         if(Auth::user()->role == 2){
             if($id == 1){
@@ -489,9 +494,47 @@ class PageController extends Controller
             }
             else{
                 $thongtinkhambenh = Thongtinkhambenh::orderBy('created_at', 'DESC')->where('trangthai', 3)->where('id_bacsi', Auth::user()->id)->paginate(10);
-                $count = count($thongtinkhambenh); 
+                $count = count($thongtinkhambenh);
             }
         }
         return view('pages.lichkhambenh', compact('thongtinkhambenh', 'count'));
+    }
+
+    public function getDanhSachBacSi(){
+        $chuyenkhoa = Bacsi::all()->groupBy('khoalamviec')->toArray();
+        $hocvi = Bacsi::all()->groupBy('hocvi')->toArray();
+        $tinh = Tinh::all();
+        $count = 0;
+        return view('danhsachbacsi.danhsachbacsi', compact('count', 'bacsi', 'chuyenkhoa', 'hocvi', 'tinh'));
+    }
+
+    public function loadDanhSachBacSi(Request $request){
+        $user_bacsi = new Bacsi();
+        $currentPage = $request->currentPage;
+        $perPage = $request->perPage;
+        // $search = $request->search;
+        $params = array(
+                'find_chuyenkhoa'  => $request->find_chuyenkhoa,
+                'find_hocvi'      => $request->find_hocvi,
+                'find_tinh' => $request->find_tinh,
+                'searchString' => $request->searchstring,
+                'currentPage'  => $request->currentPage,
+                'perPage'      => $request->perPage,
+            );
+        $objResult = $user_bacsi->_getDanhSachBacSi($params);
+        $arrResult = $objResult->toArray();
+        $data = $arrResult['data'];
+        if($data) {
+            for($i = 0; $i < count($data); $i++) {
+                if($data[$i]['dienthoai'] == null) {
+                    $data[$i]['dienthoai'] = "Không có";
+                }
+            }
+        }
+        return \Response::JSON(array(
+               'Dataloadlist'  => $data,
+               'pagination' => (string) $objResult->links('danhsachbacsi.pagination'),
+               'perPage' => $perPage,
+        ));
     }
 }

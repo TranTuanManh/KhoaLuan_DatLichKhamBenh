@@ -131,6 +131,8 @@ Route::post('/lichkham_add', 'PageController@lichkham_add');
 Route::post('/edit', 'PageController@edit');
 Route::post('/update', 'PageController@update');
 Route::post('/delete', 'PageController@delete');
+Route::get('/danh-sach/bac-si', 'PageController@getDanhSachBacSi')->name('danhsachbacsi');
+Route::post('/danh-sach/LoadBacSi', 'PageController@loadDanhSachBacSi');
 
 Route::post('comment',[
 	'as' => 'comment',
